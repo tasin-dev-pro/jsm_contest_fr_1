@@ -34,9 +34,9 @@ const Header = () => {
                 <div className="bg-white border-b">
                     <div className="flex items-center justify-between p-4">
                         <div className="flex items-center">
-                            <img src="https://placehold.co/40x40" alt="Logo" className="w-10 h-10"/>
+                            <img src="/Vibhor.png" alt="Logo" className="w-10 h-10"/>
                             <div className="ml-4 flex items-center">
-                                <span className="font-semibold">Other</span>
+                                <span className="font-semibold">Lattestura</span>
                                 <i className="fas fa-chevron-down ml-1 text-orange-500"></i>
                             </div>
                         </div>
@@ -56,6 +56,7 @@ const Header = () => {
                                 <ShoppingCart />
                                 <span>Cart</span>
                             </div>
+                            <Link to="/foods" className="flex items-center gap-1">Foods</Link>
                         </div>
                         <div className="md:hidden max-md:flex items-center">
                             <button onClick={toggleMenu} className="outline-none mobile-menu-button">

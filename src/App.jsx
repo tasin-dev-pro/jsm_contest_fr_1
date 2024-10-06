@@ -4,6 +4,8 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import { UserContextProvider } from "./UserContext"
 import Home from "./pages/Home"
+import { Footer } from "./components/Footer"
+import Foods from "./pages/Foods"
 
 
 function App() {
@@ -14,10 +16,12 @@ function App() {
     {/* Your app's routes */}
     <Routes>
         <Route path="/" element={<Home />}/>
+        <Route path="/foods" element={<Foods />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
 
     </Routes>
+    <Footer />
     </UserContextProvider>
     </BrowserRouter>
   )

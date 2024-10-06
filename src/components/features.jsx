@@ -1,11 +1,11 @@
-import React from 'react';
+;
 import FeatureCard from './FeatureCard';
 
 
 
 const features = [
   {
-    image: '/public/download.jpeg',
+    image: '/download.jpeg',
     title: 'Order Online',
     description: 'Stay home and order to your doorstep',
   },
