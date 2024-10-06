@@ -3,6 +3,7 @@ import Header from "./components/Header"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import { UserContextProvider } from "./UserContext"
+import Home from "./pages/Home"
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     <Header />
     {/* Your app's routes */}
     <Routes>
-        <Route path="/" element={<h1>Home</h1>}/>
+        <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
 
