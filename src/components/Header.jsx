@@ -66,19 +66,17 @@ const Header = () => {
                     {isOpen && (
                         <div className="md:hidden">
                             <div className="flex flex-col items-start p-4 space-y-4">
-                                <div className="flex items-center">
-                                    <i className="fas fa-briefcase mr-2"></i>
-                                    <span>Swiggy Corporate</span>
-                                </div>
-                                <div className="flex items-center">
-                                    <i className="fas fa-search mr-2"></i>
-                                    <span>Search</span>
-                                </div>
-                                <div className="flex items-center">
-                                    <i className="fas fa-percentage mr-2"></i>
-                                    <span>Offers</span>
-                                    <span className="text-orange-500 text-xs ml-1">NEW</span>
-                                </div>
+                            <Link to="/contact" className="flex items-center gap-1">
+                                <Contact />
+                                <span>Contact</span>
+                            </Link >
+                            <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
+                            {email && (<>
+                            <a to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</a>
+                            <a className="flex items-center gap-1">
+                                <ShoppingCart />
+                                <span>Cart</span>
+                            </a> </>)}
                                 <div className="flex items-center">
                                     <i className="fas fa-question-circle mr-2"></i>
                                     <span>Help</span>
@@ -95,10 +93,10 @@ const Header = () => {
                                 <span>Logout</span>
                             </div>
                             )}
-                                <div className="flex items-center">
-                                    <i className="fas fa-shopping-cart mr-2"></i>
-                                    <span>Cart</span>
-                                </div>
+                                                {!email && (<>
+                    <Link to="/login" className="flex items-center gap-1"><User />Login</Link>
+                    <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
+                </>)}
                             </div>
                         </div>
                     )}
