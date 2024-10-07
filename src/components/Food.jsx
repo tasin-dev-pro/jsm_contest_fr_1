@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BiSearch } from "react-icons/bi"; // Import search icon
+import { Search } from "lucide-react";
 
 const Food = () => {
   const [food, setFood] = useState([]);
@@ -56,7 +56,7 @@ const Food = () => {
       <div className="mb-6 mt-4 flex flex-col items-center relative">
         <div className="relative w-full max-w-md">
           {/* Search icon */}
-          <BiSearch className="absolute left-3 top-3 text-gray-400 text-xl" />
+          <Search className="absolute left-3 top-3 text-gray-400 text-xl" />
           <input
             type="text"
             placeholder="Search by food name..."
@@ -65,7 +65,7 @@ const Food = () => {
             className="w-full pl-10 px-4 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
-        
+
         {/* Search suggestions */}
         {suggestions.length > 0 && (
           <ul className="bg-white border border-gray-300 w-full max-w-md rounded-md mt-2 shadow-md">
@@ -95,7 +95,7 @@ const Food = () => {
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className="w-full h-[50%] object-contain"
+                  className="w-full h-[50%] object-cover rounded-lg"
                 />
                 <h2 className="font-bold">{item.name}</h2>
                 <p className="text-[15px]">{item.description}</p>
