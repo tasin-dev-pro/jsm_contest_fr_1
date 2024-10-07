@@ -41,10 +41,10 @@ const Header = () => {
                             </div>
                         </a>
                         <div className="max-md:hidden md:flex items-center space-x-6">
-                            <a href="/contact" className="flex items-center gap-1">
+                            <Link href="/contact" className="flex items-center gap-1">
                                 <Contact />
                                 <span>Contact</span>
-                            </a >
+                            </Link >
                             {email && (<>
                             <a to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</a>
                             <a className="flex items-center gap-1">
