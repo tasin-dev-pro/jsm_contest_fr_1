@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 
 const ContactPage = () => {
   const [email, setEmail] = useState('');
@@ -14,17 +14,17 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen">
 
-       <section className="relative w-full py-20 px-3 mt-24 bg-red-500 flex items-center justify-center flex-col ">
+       <section className="relative w-full py-20 px-3 mb-24 mt-24 bg-red-500 flex items-center justify-center flex-col ">
         <h1 className="text-3xl font-extrabold text-white">About Lattestura</h1>
         <p  className="z-20 text-xl font-semibold text-white max-w-[800px] text-center mt-4">Lattestura is a resturant who provides online services and gave the user best experience in food</p>
         <img src="/burger-3d1.png" alt="" width={200} className="absolute bottom-10 -left-10"/>
         <img src="/delivery-3d.png" alt="" width={300} className="absolute  bottom-10 right-10"/>
     </section>
-      
-      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-6 text-center">ContactPage Us</h1>
+
+      <div className="bg-white shadow-xl border rounded-lg p-8 max-w-md w-full ">
+        <h1 className="text-2xl font-bold mb-6 text-center">Contact</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -55,7 +55,7 @@ const ContactPage = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg w-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
             >
               Submit
             </button>
