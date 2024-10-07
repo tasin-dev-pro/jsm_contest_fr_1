@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import Lottie from 'lottie-react';
+import  { useState } from 'react';
+import mail from "../animations/mail.json"
 
 const ContactPage = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +24,11 @@ const ContactPage = () => {
         <img src="/burger-3d1.png" alt="" width={200} className="absolute bottom-10 -left-10"/>
         <img src="/delivery-3d.png" alt="" width={300} className="absolute  bottom-10 right-10"/>
     </section>
+    <div className='flex items-center justify-center gap-32 '>
 
+    <div className="w-[30%] max-md:w-full mb-6 md:mb-0">
+        <Lottie animationData={mail} loop={true} />
+        </div>
       <div className="bg-white shadow-xl border rounded-lg p-8 max-w-md w-full ">
         <h1 className="text-2xl font-bold mb-6 text-center">Contact</h1>
         <form onSubmit={handleSubmit}>
@@ -56,12 +62,13 @@ const ContactPage = () => {
             <button
               type="submit"
               className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg w-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-            >
+              >
               Submit
             </button>
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
