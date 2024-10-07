@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "../UserContext"
-import { Contact, LogIn, LogOut, Menu, Search, ShoppingCart, User } from "lucide-react"
+import { Contact, Ham, LogIn, LogOut, Menu, Pizza, Search, ShoppingCart, User } from "lucide-react"
 
 const Header = () => {
     const {setUserInfo, userInfo} = useContext(UserContext)
@@ -31,7 +31,7 @@ const Header = () => {
         setIsOpen(!isOpen);
     };
             return (
-                <div className="bg-white border-b">
+                <div className="bg-white border-b sticky top-0 z-50">
                     <div className="flex items-center justify-between p-4">
                         <a className="flex items-center" href="/">
                             <img src="/Vibhor.png" alt="Logo" className="w-8 h-8"/>
@@ -55,9 +55,7 @@ const Header = () => {
                     <Link to="/login" className="flex items-center gap-1"><User />Login</Link>
                     <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
                 </>)}
-
-
-                            <Link to="/foods" className="flex items-center gap-1">Foods</Link>
+                            <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
                         </div>
                         <div className="md:hidden max-md:flex items-center">
                             <button onClick={toggleMenu} className="outline-none mobile-menu-button">

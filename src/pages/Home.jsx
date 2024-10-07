@@ -6,7 +6,7 @@ import FoodSwiper from '../components/FoodSwiper'
 
 const Home = () => {
   return (
-    <div>
+    <div >
         <HeroSection />
         <h1 className='text-3xl font-extrabold text-red-500 text-center mt-10 mb-6'>Options</h1>
         <FeatureCards />
