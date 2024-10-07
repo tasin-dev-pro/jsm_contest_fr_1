@@ -90,7 +90,7 @@ const Food = () => {
           : filteredFood.length > 0 ? filteredFood.map((item, index) => (
               <div
                 key={index}
-                className="px-3 py-1 rounded-lg w-72 shadow-lg h-[400px] relative"
+                className="px-3 py-3 rounded-lg w-72 shadow-lg h-[400px] relative"
               >
                 <img
                   src={item.imageUrl}

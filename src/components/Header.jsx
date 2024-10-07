@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "../UserContext"
-import { LogOut, Menu, Search, ShoppingCart, User } from "lucide-react"
+import { Contact, LogIn, LogOut, Menu, Search, ShoppingCart, User } from "lucide-react"
 
 const Header = () => {
     const {setUserInfo, userInfo} = useContext(UserContext)
@@ -33,29 +33,30 @@ const Header = () => {
             return (
                 <div className="bg-white border-b">
                     <div className="flex items-center justify-between p-4">
-                        <div className="flex items-center">
-                            <img src="/Vibhor.png" alt="Logo" className="w-10 h-10"/>
+                        <a className="flex items-center" href="/">
+                            <img src="/Vibhor.png" alt="Logo" className="w-8 h-8"/>
                             <div className="ml-4 flex items-center">
                                 <span className="font-semibold">Lattestura</span>
                                 <i className="fas fa-chevron-down ml-1 text-orange-500"></i>
                             </div>
-                        </div>
+                        </a>
                         <div className="max-md:hidden md:flex items-center space-x-6">
                             <div className="flex items-center gap-1">
-                                <Search />
-                                <span>Search</span>
+                                <Contact />
+                                <span>Contact</span>
                             </div>
                             {email && (<>
-                            <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link> </>)}
-                {!email && (<>
-                    <Link to="/login" className="flex items-center gap-1">Login</Link>
-                    <Link to="/register" className="flex items-center gap-1" >Register</Link>
-                </>)}
-
-                            <div className="flex items-center gap-1">
+                            <a to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</a>
+                            <a className="flex items-center gap-1">
                                 <ShoppingCart />
                                 <span>Cart</span>
-                            </div>
+                            </a> </>)}
+                {!email && (<>
+                    <Link to="/login" className="flex items-center gap-1"><User />Login</Link>
+                    <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
+                </>)}
+
+
                             <Link to="/foods" className="flex items-center gap-1">Foods</Link>
                         </div>
                         <div className="md:hidden max-md:flex items-center">
