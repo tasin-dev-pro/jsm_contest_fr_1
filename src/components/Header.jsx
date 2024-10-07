@@ -41,7 +41,7 @@ const Header = () => {
                             </div>
                         </a>
                         <div className="max-md:hidden md:flex items-center space-x-6">
-                            <Link href="/contact" className="flex items-center gap-1">
+                            <Link to="/contact" className="flex items-center gap-1">
                                 <Contact />
                                 <span>Contact</span>
                             </Link >
