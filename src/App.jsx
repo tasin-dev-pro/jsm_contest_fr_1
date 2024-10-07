@@ -6,6 +6,7 @@ import { UserContextProvider } from "./UserContext"
 import Home from "./pages/Home"
 import { Footer } from "./components/Footer"
 import Foods from "./pages/Foods"
+import ContactPage from "./pages/ContactPage"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/foods" element={<Foods />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
+        <Route path="/contact" element={<ContactPage/>}/>
 
     </Routes>
     <Footer />
