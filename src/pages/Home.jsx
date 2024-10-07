@@ -7,7 +7,7 @@ const Home = () => {
     <div>
         <HeroSection />
         <FeatureCards />
-        <CTA />
+        {/* <CTA /> */}
     </div>
   )
 }

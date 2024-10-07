@@ -53,8 +53,8 @@ const Food = () => {
   return (
     <div className="max-w-[1396px] m-auto">
       {/* Search bar */}
-      <div className="mb-6 mt-4 flex flex-col items-center relative">
-        <div className="relative w-full max-w-md">
+      <div className="px-6 mb-6 mt-4 flex flex-col items-center relative">
+        <div className="relative w-full max-w-[1396px]">
           {/* Search icon */}
           <Search className="absolute left-3 top-3 text-gray-400 text-xl" />
           <input
@@ -98,8 +98,9 @@ const Food = () => {
                   className="w-full h-[50%] object-cover rounded-lg"
                 />
                 <h2 className="font-bold">{item.name}</h2>
+                <p className="font-semibold text-[15px]">${item.price}</p>
                 <p className="text-[15px]">{item.description}</p>
-                <p className="absolute font-bold left-2 bottom-2">${item.price}</p>
+                <button className="absolute font-bold left-2 bottom-2 px-3 py-1 bg-red-500 text-white rounded">Add to Cart</button>
               </div>
             ))
           : <p>No food found.</p>}
