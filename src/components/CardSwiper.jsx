@@ -15,7 +15,7 @@ function CardSwiper() {
       }, []);
 
   return (
-    <Swiper slidesPerView={4}
+    <Swiper slidesPerView={Math.floor(window.innerWidth / 400)}
       navigation={{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -24,12 +24,13 @@ function CardSwiper() {
         el: '.swiper-pagination',
         clickable: true
       }}
+
     >
       {food.map((item, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide key={index} >
           <div
                 key={index}
-                className="bg-white px-3 py-3 rounded-lg w-72 shadow-lg h-[400px] relative"
+                className="bg-white px-3 py-3 rounded-lg w-72 shadow-lg h-[300px] relative"
               >
                 <img
                   src={item.imageUrl}
