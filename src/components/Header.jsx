@@ -77,12 +77,6 @@ const Header = () => {
                                 <ShoppingCart />
                                 <span>Cart</span>
                             </a> </>)}
-                            {email && (
-                                <div className="flex items-center gap-1" onClick={logout}>
-                                <User />
-                                <span>Logout</span>
-                            </div>
-                            )}
                                                 {!email && (<>
                     <Link to="/login" className="flex items-center gap-1"><User />Login</Link>
                     <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
