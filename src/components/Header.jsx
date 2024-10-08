@@ -72,11 +72,11 @@ const Header = () => {
                             </Link >
                             <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
                             {email && (<>
-                            <a to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</a>
-                            <a className="flex items-center gap-1">
+                            <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
+                            <Link className="flex items-center gap-1">
                                 <ShoppingCart />
                                 <span>Cart</span>
-                            </a> </>)}
+                            </Link> </>)}
                                                 {!email && (<>
                     <Link to="/login" className="flex items-center gap-1"><User />Login</Link>
                     <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
