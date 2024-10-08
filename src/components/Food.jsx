@@ -97,10 +97,10 @@ const Food = () => {
                   alt={item.name}
                   className="w-full h-[50%] object-cover rounded-lg"
                 />
-                <h2 className="font-bold">{item.name}</h2>
+                <h2 className="font-bold pt-5">{item.name}</h2>
                 <p className="font-semibold text-[15px]">${item.price}</p>
                 <p className="text-[15px]">{item.description}</p>
-                <button className="absolute font-bold left-2 bottom-2 px-3 py-1 bg-red-500 text-white rounded">Add to Cart</button>
+                <button className="absolute font-bold left-3 bottom-3 px-3 py-1 bg-red-500 text-white rounded">Add to Cart</button>
               </div>
             ))
           : <p>No food found.</p>}
