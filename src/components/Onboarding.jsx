@@ -4,8 +4,7 @@ import { UserContext } from '../UserContext';
 function OnboardingPage() {
   const { responseImg, setResponseImg } = useContext(UserContext);
   const [profilePicture, setProfilePicture] = useState(null);
-  const [username, setUsername] = useState('');
-  const [gender, setGender] = useState('');
+  const [username, setUsername] = useState('')
   const [bio, setBio] = useState('');
 
   const handleSubmit = async (e) => {
@@ -32,7 +31,7 @@ function OnboardingPage() {
       console.error('Error uploading to Cloudinary:', error);
     }
 
-    console.log('Form submitted:', { profilePicture, username, gender, bio });
+    console.log('Form submitted:', { profilePicture, username, bio });
   };
 
   useEffect(() => {
@@ -82,25 +81,6 @@ function OnboardingPage() {
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="gender"
-            >
-              Gender
-            </label>
-            <select
-              className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
           <div className="w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
