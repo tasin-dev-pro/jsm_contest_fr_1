@@ -4,6 +4,7 @@ import { UserContext } from "../UserContext"
 import { Contact, Ham, LogIn, LogOut, Menu, Pizza, Search, ShoppingCart, User } from "lucide-react"
 
 const Header = () => {
+    const {responseImg} = useContext(UserContext)
     const {setUserInfo, userInfo} = useContext(UserContext)
     useEffect(() => {
         fetch('https://jsm-contest.onrender.com/profile', {
@@ -45,17 +46,23 @@ const Header = () => {
                                 <Contact />
                                 <span>Contact</span>
                             </Link >
-                            {email && (<>
-                            <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
-                            <Link className="flex items-center gap-1">
-                                <ShoppingCart />
-                                <span>Cart</span>
-                            </Link> </>)}
+
                 {!email && (<>
                     <Link to="/login" className="flex items-center gap-1"><User />Login</Link>
                     <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
                 </>)}
                             <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
+                            {email && (<>
+                            <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
+                            <Link className="flex items-center gap-1">
+                                <ShoppingCart />
+                                <span>Cart</span>
+                                {responseImg && responseImg.secure_url && (
+        <div className="w-8 ml-3">
+          <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-contain" />
+        </div>
+      )}
+                            </Link> </>)}
                         </div>
                         <div className="md:hidden max-md:flex items-center">
                             <button onClick={toggleMenu} className="outline-none mobile-menu-button">

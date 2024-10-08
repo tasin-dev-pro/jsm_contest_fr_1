@@ -7,6 +7,8 @@ import Home from "./pages/Home"
 import { Footer } from "./components/Footer"
 import Foods from "./pages/Foods"
 import ContactPage from "./pages/ContactPage"
+import Restaurant from "./pages/Restaurant"
+import Onboarding from "./pages/Onboarding"
 
 
 function App() {
