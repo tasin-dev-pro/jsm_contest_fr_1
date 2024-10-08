@@ -54,11 +54,12 @@ const Header = () => {
                             <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
                             {email && (<>
                             <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
+                            <Link to="/onboarding" className="flex items-center gap-1" >Profile</Link>
                             <Link className="flex items-center gap-1">
                                 <ShoppingCart />
                                 <span>Cart</span>
                                 {responseImg && responseImg.secure_url && (
-        <div className="w-8 ml-3">
+        <div className="w-8">
           <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-contain" />
         </div>
       )}
