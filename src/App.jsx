@@ -9,6 +9,7 @@ import Foods from "./pages/Foods"
 import ContactPage from "./pages/ContactPage"
 import Restaurant from "./pages/Restaurant"
 import Onboarding from "./pages/Onboarding"
+import {  ProfileEditPage } from "./pages/ProfileEdit"
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/register" element={<Register />}/>
         <Route path="/contact" element={<ContactPage/>}/>
         <Route path="/restaurants" element={<Restaurant/>}/>
+        <Route path="/edit" element={<ProfileEditPage/>}/>
 
     </Routes>
     <Footer />
