@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PencilLine } from 'lucide-react';
+import { UserContext } from '../UserContext';
 
 export default function ProfileEdit() {
+    const {setUserInfo, userInfo} = useContext(UserContext)
   return (
     <div className="w-full">
       {/* Hero Section with Background Image */}
@@ -20,7 +22,7 @@ export default function ProfileEdit() {
             </div>
 
             {/* Name */}
-            <h1 className="text-lg sm:text-2xl font-bold text-white">Vibhor</h1>
+            <h1 className="text-lg sm:text-2xl font-bold text-white">{userInfo?.username}</h1>
           </div>
 
           {/* Edit Profile Button */}

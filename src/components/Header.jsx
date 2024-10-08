@@ -34,13 +34,13 @@ const Header = () => {
             return (
                 <div className="bg-white border-b sticky top-0 z-50">
                     <div className="flex items-center justify-between p-4">
-                        <a className="flex items-center" href="/">
+                        <Link className="flex items-center" to="/">
                             <img src="/Vibhor.png" alt="Logo" className="w-8 h-8"/>
                             <div className="ml-4 flex items-center">
                                 <span className="font-semibold">Lattestura</span>
                                 <i className="fas fa-chevron-down ml-1 text-orange-500"></i>
                             </div>
-                        </a>
+                        </Link>
                         <div className="max-md:hidden md:flex items-center space-x-6">
                             <Link to="/contact" className="flex items-center gap-1">
                                 <Contact />
@@ -52,6 +52,7 @@ const Header = () => {
                     <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
                 </>)}
                             <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
+                            <Link to="/restaurants" className="flex items-center gap-1"><Ham />Restaurants</Link>
                             {email && (<>
                             <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
                             <Link to="/onboarding" className="flex items-center gap-1" >Profile</Link>
@@ -59,9 +60,9 @@ const Header = () => {
                                 <ShoppingCart />
                                 <span>Cart</span>
                                 {responseImg && responseImg.secure_url && (
-        <div className="w-8">
+        <Link className="w-8" to="/edit">
           <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
-        </div>
+        </Link>
       )}
                             </Link> </>)}
                         </div>
