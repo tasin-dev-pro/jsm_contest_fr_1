@@ -24,7 +24,7 @@ const ContactPage = () => {
         <img src="/burger-3d1.png" alt="" width={200} className="absolute bottom-10 -left-10"/>
         <img src="/delivery-3d.png" alt="" width={300} className="absolute  bottom-10 right-10"/>
     </section>
-    <div className='flex items-center justify-center gap-32 '>
+    <div className='flex items-center justify-center gap-32 flex-wrap'>
 
     <div className="w-[30%] max-md:w-full mb-6 md:mb-0">
         <Lottie animationData={mail} loop={true} />

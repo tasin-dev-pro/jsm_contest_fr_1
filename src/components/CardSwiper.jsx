@@ -2,6 +2,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useEffect, useState } from 'react';
+import { Soup } from 'lucide-react';
 
 function CardSwiper() {
     const [food, setFood] = useState([]);
@@ -30,7 +31,7 @@ function CardSwiper() {
         <SwiperSlide key={index} >
           <div
                 key={index}
-                className="bg-white px-3 py-3 rounded-lg w-72 shadow-lg h-[300px] relative"
+                className="bg-white px-3 py-3 rounded-lg w-72 shadow-lg h-[350px] relative"
               >
                 <img
                   src={item.imageUrl}
@@ -39,6 +40,7 @@ function CardSwiper() {
                 />
                 <h2 className="font-bold">{item.name}</h2>
                 <p className="font-semibold text-[15px]">${item.price}</p>
+                <p className="font-semibold text-[15px] text-red-500 flex items-center"><Soup />{item.dishType}</p>
                 <p className="text-[15px]">{item.description}</p>
                 <button className="absolute font-bold left-2 bottom-2 px-3 py-1 bg-red-500 text-white rounded">Add to Cart</button>
               </div>
