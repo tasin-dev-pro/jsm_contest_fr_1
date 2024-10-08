@@ -98,7 +98,7 @@ const Food = () => {
                   alt={item.name}
                   className="w-full h-[50%] object-cover rounded-lg"
                 />
-                <h2 className="font-bold">{item.name}</h2>
+                <h2 className="font-bold mt-5 text-xl">{item.name}</h2>
                 <p className="font-semibold text-[15px]">${item.price}</p>
                 <p className="font-semibold text-[15px] text-red-500 flex items-center"><Soup />{item.dishType}</p>
                 <p className="text-[15px]">{item.description}</p>

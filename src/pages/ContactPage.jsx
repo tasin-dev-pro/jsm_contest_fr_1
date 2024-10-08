@@ -29,8 +29,8 @@ const ContactPage = () => {
     <div className="w-[30%] max-md:w-full mb-6 md:mb-0">
         <Lottie animationData={mail} loop={true} />
         </div>
-      <div className="bg-white shadow-xl border rounded-lg p-8 max-w-md w-full ">
-        <h1 className="text-2xl font-bold mb-6 text-center">Contact</h1>
+      <div className="bg-white hover:shadow-2xl shadow-lg border rounded-lg p-8 max-w-md w-full transition-all duration-300">
+        <h1 className="text-2xl text-red-500 font-bold mb-6 text-center">Contact</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">

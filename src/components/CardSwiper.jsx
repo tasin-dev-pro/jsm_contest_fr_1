@@ -28,7 +28,7 @@ function CardSwiper() {
 
     >
       {food.map((item, index) => (
-        <SwiperSlide key={index} >
+        <SwiperSlide key={index} className='flex flex-col items-center justify-center'>
           <div
                 key={index}
                 className="bg-white px-3 py-3 rounded-lg w-72 shadow-lg h-[350px] relative"
