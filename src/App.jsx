@@ -7,7 +7,6 @@ import Home from "./pages/Home"
 import { Footer } from "./components/Footer"
 import Foods from "./pages/Foods"
 import ContactPage from "./pages/ContactPage"
-import Onboarding from "./pages/Onboarding"
 
 
 function App() {
@@ -23,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/contact" element={<ContactPage/>}/>
+        <Route path="/restaurants" element={<Restaurant/>}/>
 
     </Routes>
     <Footer />
