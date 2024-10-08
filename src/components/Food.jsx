@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
+import {Soup} from "lucide-react"
 
 const Food = () => {
   const [food, setFood] = useState([]);
@@ -99,6 +100,7 @@ const Food = () => {
                 />
                 <h2 className="font-bold">{item.name}</h2>
                 <p className="font-semibold text-[15px]">${item.price}</p>
+                <p className="font-semibold text-[15px] text-red-500 flex items-center"><Soup />{item.dishType}</p>
                 <p className="text-[15px]">{item.description}</p>
                 <button className="absolute font-bold left-2 bottom-2 px-3 py-1 bg-red-500 text-white rounded">Add to Cart</button>
               </div>
