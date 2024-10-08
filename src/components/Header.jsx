@@ -60,7 +60,7 @@ const Header = () => {
                                 <span>Cart</span>
                                 {responseImg && responseImg.secure_url && (
         <div className="w-8">
-          <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-contain" />
+          <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
         </div>
       )}
                             </Link> </>)}
