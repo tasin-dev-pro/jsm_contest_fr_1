@@ -7,19 +7,7 @@ export default function ProfileEdit() {
     const { userInfo, responseImg} = useContext(UserContext)
     const {usernameGlb, setUsernameGlb} = useContext(UserContext)
     const {bioGlb, setBioGlb} = useContext(UserContext)
-
-    useEffect(() => {
-        fetch(`https://jsm-contest.onrender.com/getProfile/${userInfo?.email}`, {
-            method: 'GET'
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-
-            setUsernameGlb(data.username)
-            setBioGlb(data.bio)
-        })
-    }, [userInfo?.email])
+    const {setResponseImg} = useContext(UserContext)
   return (
     <div className="w-full">
       {/* Hero Section with Background Image */}
@@ -31,7 +19,7 @@ export default function ProfileEdit() {
             {/* Profile Image */}
             <div className="h-20 w-20 sm:h-24 sm:w-24 overflow-hidden rounded-full border-4 border-white">
               <img
-                src={responseImg?.secure_url}
+                src={responseImg}
                 alt="Profile"
                 className="h-full w-full object-cover"
               />
@@ -45,7 +33,7 @@ export default function ProfileEdit() {
           </div>
 
           {/* Edit Profile Button */}
-          <Link className="flex items-center gap-2 rounded-lg bg-pink-500 px-3 sm:px-4 py-2 text-sm sm:text-base text-white hover:bg-pink-600">
+          <Link to="/onboarding" className="flex items-center gap-2 rounded-lg bg-pink-500 px-3 sm:px-4 py-2 text-sm sm:text-base text-white hover:bg-pink-600">
             <PencilLine size={16} />
             <span>Edit profile</span>
           </Link>

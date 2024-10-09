@@ -4,8 +4,21 @@ import { UserContext } from "../UserContext"
 import { Contact, Ham, LogIn, LogOut, Menu, Pizza, Search, ShoppingCart, User } from "lucide-react"
 
 const Header = () => {
-    const {responseImg} = useContext(UserContext)
+    const {responseImg, setResponseImg} = useContext(UserContext)
     const {setUserInfo, userInfo} = useContext(UserContext)
+
+
+    useEffect(() => {
+        fetch(`https://jsm-contest.onrender.com/getProfile/${userInfo?.email}`, {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+
+            setResponseImg(data.profilePic)
+        })
+    }, [userInfo?.email])
     useEffect(() => {
         fetch('https://jsm-contest.onrender.com/profile', {
             credentials: 'include',
@@ -24,6 +37,7 @@ const Header = () => {
         setUserInfo(null)
     }
     const email = userInfo?.email;
+    const imgIsAvailable = responseImg?.secure_url
 
 
     const [isOpen, setIsOpen] = useState(false);
@@ -55,14 +69,13 @@ const Header = () => {
                             <Link to="/restaurants" className="flex items-center gap-1"><Ham />Restaurants</Link>
                             {email && (<>
                             <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
-                            <Link to="/onboarding" className="flex items-center gap-1" >Profile</Link>
                             <Link className="flex items-center gap-1">
                                 <ShoppingCart />
                                 <span>Cart</span>
                                 </Link>
-                                {responseImg && responseImg.secure_url && (
+                                {responseImg && (
         <Link className="w-8" to="/edit">
-          <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
+          <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
         </Link>
       )}
                             </>)}
