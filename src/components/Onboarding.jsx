@@ -14,11 +14,23 @@ function OnboardingPage() {
       return;
     }
 
+    fetch(`http://localhost:3001/updateUser/${userInfo?.email}`, {
+        method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        username: username,
+        bio: bio,
+        profilePic: responseImg.url
+    }),
+    })
+    .then(res => res.json())
+    alert('Form submitted:', { profilePicture, username, bio });
     const data = new FormData();
     data.append('file', profilePicture);
     data.append('upload_preset', "lattesturaimgs");
     data.append('cloud_name', "dhtvnoz9d");
-
     try {
       const result = await fetch('https://api.cloudinary.com/v1_1/dhtvnoz9d/image/upload', {
         method: 'POST',
@@ -31,7 +43,7 @@ function OnboardingPage() {
       console.error('Error uploading to Cloudinary:', error);
     }
 
-    console.log('Form submitted:', { profilePicture, username, bio });
+
   };
 
   useEffect(() => {
@@ -43,9 +55,9 @@ function OnboardingPage() {
   return (
     <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
       <h1 className="text-3xl font-bold mb-4">Customize your Profile</h1>
-      {responseImg && responseImg.secure_url && (
+      {responseImg && (
         <div className="mb-6">
-          <img src={responseImg.secure_url} alt="Uploaded profile" className="max-w-xs mx-auto rounded-lg shadow-lg" />
+          <img src={responseImg} alt="Uploaded profile" className="max-w-xs mx-auto rounded-lg shadow-lg" />
         </div>
       )}
       <form onSubmit={handleSubmit}>

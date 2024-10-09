@@ -4,7 +4,7 @@ import { UserContext } from "../UserContext"
 import { Contact, Ham, LogIn, LogOut, Menu, Pizza, Search, ShoppingCart, User } from "lucide-react"
 
 const Header = () => {
-    const {responseImg, setResponseImg} = useContext(UserContext)
+    const {responseImg, setResponseImg, usernameGlb, setUsernameGlb, bioGlb, setBioGlb} = useContext(UserContext)
     const {setUserInfo, userInfo} = useContext(UserContext)
 
 
@@ -17,8 +17,10 @@ const Header = () => {
             console.log(data);
 
             setResponseImg(data.profilePic)
+            setUsernameGlb(data.username)
+            setBioGlb(data.bio)
         })
-    }, [userInfo?.email])
+    }, [userInfo?.email, responseImg])
     useEffect(() => {
         fetch('https://jsm-contest.onrender.com/profile', {
             credentials: 'include',
@@ -106,9 +108,9 @@ const Header = () => {
                                 <ShoppingCart />
                                 <span>Cart</span>
                                 </Link>
-                                {responseImg && responseImg.secure_url && (
+                                {responseImg && (
         <Link className="w-8" to="/edit">
-          <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
+          <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
         </Link>
       )}
                             </>)}
