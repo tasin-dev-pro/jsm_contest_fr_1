@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PencilLine } from 'lucide-react';
 import { UserContext } from '../UserContext';
+import { Link } from 'react-router-dom';
 
 export default function ProfileEdit() {
     const { userInfo, responseImg} = useContext(UserContext)
@@ -44,10 +45,10 @@ export default function ProfileEdit() {
           </div>
 
           {/* Edit Profile Button */}
-          <button className="flex items-center gap-2 rounded-lg bg-pink-500 px-3 sm:px-4 py-2 text-sm sm:text-base text-white hover:bg-pink-600">
+          <Link className="flex items-center gap-2 rounded-lg bg-pink-500 px-3 sm:px-4 py-2 text-sm sm:text-base text-white hover:bg-pink-600">
             <PencilLine size={16} />
             <span>Edit profile</span>
-          </button>
+          </Link>
         </div>
       </div>
 

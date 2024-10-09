@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 
 const Register = () => {
@@ -47,7 +48,7 @@ const Register = () => {
       </div>
       <div className="flex items-center justify-between">
         <button className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Register</button>
-        <a className="inline-block underline align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800" href="/login">Already have an account?</a>
+        <Link className="inline-block underline align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800" to="/login">Already have an account?</Link>
       </div>
     </form>
   </div>

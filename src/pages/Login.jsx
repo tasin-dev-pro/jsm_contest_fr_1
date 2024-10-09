@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { Navigate } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { UserContext } from "../UserContext"
 
 
@@ -51,7 +51,7 @@ const Login = () => {
       </div>
       <div className="flex items-center justify-between">
         <button className="bg-red-500 hover:bg-red-400  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
-        <a className="inline-block underline align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800" href="/register">Dont have an account?</a>
+        <Link className="inline-block underline align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800" to="/register">Dont have an account?</Link>
       </div>
     </form>
   </div>

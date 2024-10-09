@@ -59,12 +59,13 @@ const Header = () => {
                             <Link className="flex items-center gap-1">
                                 <ShoppingCart />
                                 <span>Cart</span>
+                                </Link>
                                 {responseImg && responseImg.secure_url && (
         <Link className="w-8" to="/edit">
           <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
         </Link>
       )}
-                            </Link> </>)}
+                            </>)}
                         </div>
                         <div className="md:hidden max-md:flex items-center">
                             <button onClick={toggleMenu} className="outline-none mobile-menu-button">
@@ -79,17 +80,25 @@ const Header = () => {
                                 <Contact />
                                 <span>Contact</span>
                             </Link >
-                            <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
-                            {email && (<>
-                            <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
-                            <Link className="flex items-center gap-1">
-                                <ShoppingCart />
-                                <span>Cart</span>
-                            </Link> </>)}
-                                                {!email && (<>
+                            {!email && (<>
                     <Link to="/login" className="flex items-center gap-1"><User />Login</Link>
                     <Link to="/register" className="flex items-center gap-1" ><User />Register</Link>
                 </>)}
+                <Link to="/foods" className="flex items-center gap-1"><Pizza />Foods</Link>
+                            <Link to="/restaurants" className="flex items-center gap-1"><Ham />Restaurants</Link>
+                            {email && (<>
+                            <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
+                            <Link to="/onboarding" className="flex items-center gap-1" >Profile</Link>
+                            <Link className="flex items-center gap-1">
+                                <ShoppingCart />
+                                <span>Cart</span>
+                                </Link>
+                                {responseImg && responseImg.secure_url && (
+        <Link className="w-8" to="/edit">
+          <img src={responseImg.secure_url} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
+        </Link>
+      )}
+                            </>)}
                             </div>
                         </div>
                     )}
