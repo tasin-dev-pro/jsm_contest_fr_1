@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ProfileEdit from '../components/ProfileEdit'
 
 export const ProfileEditPage = () => {
@@ -8,4 +8,3 @@ export const ProfileEditPage = () => {
         </div>
   )
 }
-
