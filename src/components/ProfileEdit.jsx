@@ -8,7 +8,7 @@ export default function ProfileEdit() {
     const {bioGlb, setBioGlb} = useContext(UserContext)
 
     useEffect(() => {
-        fetch(`http://localhost:3001/getProfile/${userInfo?.email}`, {
+        fetch(`https://jsm-contest.onrender.com/getProfile/${userInfo?.email}`, {
             method: 'GET'
         })
         .then(res => res.json())
