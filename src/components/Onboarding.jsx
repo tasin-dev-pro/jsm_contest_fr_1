@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import  { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../UserContext';
 
 function OnboardingPage() {
-  const { responseImg, setResponseImg, userInfo, usernameGlb, setUsernameGlb, bioGlb, setBioGlb } = useContext(UserContext);
+  const { responseImg, setResponseImg, userInfo, usernameGlb,  bioGlb } = useContext(UserContext);
   const [profilePicture, setProfilePicture] = useState(null);
   const [username, setUsername] = useState('')
   const [bio, setBio] = useState('');
