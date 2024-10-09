@@ -14,7 +14,7 @@ function OnboardingPage() {
       return;
     }
 
-    fetch(`http://localhost:3001/updateUser/${userInfo?.email}`, {
+    fetch(`https://jsm-contest.onrender.com/updateUser/${userInfo?.email}`, {
         method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ function OnboardingPage() {
     }),
     })
     .then(res => res.json())
-    alert('Form submitted:', { profilePicture, username, bio });
+    alert('Form submitted:', { username, bio });
     const data = new FormData();
     data.append('file', profilePicture);
     data.append('upload_preset', "lattesturaimgs");
