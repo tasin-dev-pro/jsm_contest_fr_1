@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../UserContext';
 
 function OnboardingPage() {
-  const { responseImg, setResponseImg } = useContext(UserContext);
+  const { responseImg, setResponseImg, userInfo, usernameGlb, setUsernameGlb, bioGlb, setBioGlb } = useContext(UserContext);
   const [profilePicture, setProfilePicture] = useState(null);
   const [username, setUsername] = useState('')
   const [bio, setBio] = useState('');
@@ -75,6 +75,7 @@ function OnboardingPage() {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="username"
               type="text"
+              defaultValue={usernameGlb}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -91,6 +92,7 @@ function OnboardingPage() {
             <textarea
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded resize-none py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="bio"
+              defaultValue={bioGlb}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
             />

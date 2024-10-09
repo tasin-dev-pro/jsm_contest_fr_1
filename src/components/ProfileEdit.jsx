@@ -1,9 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { PencilLine } from 'lucide-react';
 import { UserContext } from '../UserContext';
 
 export default function ProfileEdit() {
-    const {setUserInfo, userInfo} = useContext(UserContext)
+    const { userInfo, responseImg} = useContext(UserContext)
+    const {usernameGlb, setUsernameGlb} = useContext(UserContext)
+    const {bioGlb, setBioGlb} = useContext(UserContext)
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/getProfile/${userInfo?.email}`, {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+
+            setUsernameGlb(data.username)
+            setBioGlb(data.bio)
+        })
+    }, [userInfo?.email])
   return (
     <div className="w-full">
       {/* Hero Section with Background Image */}
@@ -15,14 +30,17 @@ export default function ProfileEdit() {
             {/* Profile Image */}
             <div className="h-20 w-20 sm:h-24 sm:w-24 overflow-hidden rounded-full border-4 border-white">
               <img
-                src="/api/placeholder/96/96"
+                src={responseImg?.secure_url}
                 alt="Profile"
                 className="h-full w-full object-cover"
               />
             </div>
 
             {/* Name */}
-            <h1 className="text-lg sm:text-2xl font-bold text-white">{userInfo?.username}</h1>
+            <div className='gap-y-2 flex flex-col'>
+            <h1 className="text-lg sm:text-2xl font-bold text-white">{usernameGlb}</h1>
+            <h1 className="text-sm sm:text-lg text-white">{bioGlb}</h1>
+            </div>
           </div>
 
           {/* Edit Profile Button */}
