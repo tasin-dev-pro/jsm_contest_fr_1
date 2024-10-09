@@ -35,7 +35,7 @@ function OnboardingPage() {
       console.log('Cloudinary response:', cloudinaryResult);
 
       // Update the profile in the backend
-      const updateResponse = await fetch(`http://localhost:3001/updateUser/${userInfo?.email}`, {
+      const updateResponse = await fetch(`https://jsm-contest.onrender.com/updateUser/${userInfo?.email}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

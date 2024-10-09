@@ -10,6 +10,8 @@ import ContactPage from "./pages/ContactPage"
 import Restaurant from "./pages/Restaurant"
 import Onboarding from "./pages/Onboarding"
 import {  ProfileEditPage } from "./pages/ProfileEdit"
+import { useEffect } from "react"
+import  "https://api.cronbot.ai/v1/widgets/app/app_pbddkgv57c8k"
 
 
 function App() {
