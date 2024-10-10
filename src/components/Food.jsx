@@ -55,10 +55,11 @@ const Food = () => {
 
       const result = await response.json();
       if (response.ok) {
-        console.log(result.message); // Show success message or update cart state
+        alert.log(result.message); // Show success message or update cart state
       } else {
-        console.error(result.message); // Show error message
+        alert(result.message); // Show error message
       }
+      setOrderLoading(false);
     } catch (error) {
       console.error("Error adding item to cart:", error);
     }
@@ -126,9 +127,7 @@ const Food = () => {
                   className="absolute font-bold left-3 bottom-3 px-3 py-1 bg-red-500 text-white rounded"
                   onClick={() => addToCart(item._id)} // Call addToCart function with the product ID
                 >
-                  {
-                    orderLoading ? 'adding...' : 'Add to Cart'
-                  }
+                  add to cart
                 </button>
               </div>
             ))
