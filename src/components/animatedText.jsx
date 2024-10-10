@@ -48,7 +48,7 @@ const BigTextSection = () => {
   });
 
   return (
-    <div ref={pinRef} className="max-sm:hidden h-screen flex items-center justify-center relative">
+    <div ref={pinRef} className="max-sm:hidden h-screen flex items-center justify-center relative overflow-x-hidden">
       <img
         ref={imageRef}
         src={"/burger-3d1.png"}

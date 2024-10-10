@@ -17,6 +17,7 @@ const CTA = () => {
                 trigger: img1.current,
                 start: "top 80%",
                 toggleActions: "play none none none",
+                scrub: 1,
             },
         })
         gsap.from(img2.current, {
@@ -27,6 +28,7 @@ const CTA = () => {
                 trigger: img2.current,
                 start: "top 80%",
                 toggleActions: "play none none none",
+                scrub: 1,
             },
         })
     })

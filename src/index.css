@@ -6,4 +6,5 @@
 html, body {
     font-family: 'Poppins', system-ui;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }

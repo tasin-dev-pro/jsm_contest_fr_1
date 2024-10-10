@@ -76,8 +76,8 @@ const Header = () => {
                                 <span>Cart</span>
                                 </Link>
                                 {responseImg && (
-        <Link className="w-8" to="/edit">
-          <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
+        <Link className="w-8 h-8" to="/edit">
+          <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover h-full" />
         </Link>
       )}
                             </>)}

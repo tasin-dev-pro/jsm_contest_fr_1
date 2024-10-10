@@ -10,16 +10,67 @@ import ContactPage from "./pages/ContactPage"
 import Restaurant from "./pages/Restaurant"
 import Onboarding from "./pages/Onboarding"
 import {  ProfileEditPage } from "./pages/ProfileEdit"
-import { useEffect } from "react"
+import { useEffect, useLayoutEffect, useRef } from "react"
 import  "https://api.cronbot.ai/v1/widgets/app/app_pbddkgv57c8k"
 import Cart from "./pages/Cart"
 
 
-function App() {
+import gsap from "gsap"
+
+const App = () => {
+  const comp = useRef(null)
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const t1 = gsap.timeline()
+      t1.from("#intro-slider", {
+        duration: 1.3,
+        delay: 0.6,
+      })
+        .from(["#title-1", "#title-2", "#title-3"], {
+          opacity: 0,
+          y: "+=30",
+          stagger: 0.5,
+        })
+        .to(["#title-1", "#title-2", "#title-3"], {
+          opacity: 0,
+          y: "-=30",
+          delay: 0.3,
+          stagger: 0.5,
+        })
+        .to("#intro-slider", {
+          xPercent: "-100",
+          duration: 1.3,
+        })
+        .from("#welcome", {
+          opacity: 0,
+          duration: 0.5,
+        })
+    }, comp)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
     <BrowserRouter>
     <UserContextProvider>
     <Header />
+    <div className="relative" ref={comp}>
+    <div
+        id="intro-slider"
+        className="h-[100vh] p-10 bg-gray-50 absolute top-0 left-0 font-spaceGrotesk z-10 w-full flex flex-col gap-10 tracking-tight"
+      >
+        <h1 className="text-9xl" id="title-1">
+          Order
+        </h1>
+        <h1 className="text-9xl" id="title-2">
+          Get
+        </h1>
+        <h1 className="text-9xl" id="title-3">
+          Eat
+        </h1>
+      </div>
+
     {/* Your app's routes */}
     <Routes>
         <Route path="/" element={<Home />}/>
@@ -33,6 +84,7 @@ function App() {
         <Route path="/edit" element={<ProfileEditPage/>}/>
 
     </Routes>
+    </div>
     <Footer />
     </UserContextProvider>
     </BrowserRouter>
