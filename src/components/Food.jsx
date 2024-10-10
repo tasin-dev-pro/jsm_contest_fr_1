@@ -10,6 +10,7 @@ const Food = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const {userInfo} = useContext(UserContext)
+  const [orderLoading, setOrderLoading] = useState(false);
 
   useEffect(() => {
     fetch('https://jsm-contest.onrender.com/getFoods', { method: 'GET' })
@@ -42,6 +43,7 @@ const Food = () => {
     const quantity = 1; // Default quantity, adjust as needed
 
     try {
+        setOrderLoading(true)
       const response = await fetch('https://jsm-contest.onrender.com/cart/add', {
         method: 'POST',
         headers: {
@@ -49,6 +51,7 @@ const Food = () => {
         },
         body: JSON.stringify({ email, productId, quantity }),
       });
+
 
       const result = await response.json();
       if (response.ok) {
@@ -123,7 +126,9 @@ const Food = () => {
                   className="absolute font-bold left-3 bottom-3 px-3 py-1 bg-red-500 text-white rounded"
                   onClick={() => addToCart(item._id)} // Call addToCart function with the product ID
                 >
-                  Order now
+                  {
+                    orderLoading ? 'adding...' : 'Add to Cart'
+                  }
                 </button>
               </div>
             ))
