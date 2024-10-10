@@ -1,7 +1,10 @@
-
+import React, { useRef } from 'react';
 import FeatureCard from './FeatureCard';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
-
+gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger
 
 const features = [
   {
@@ -17,13 +20,35 @@ const features = [
   {
     image: '/offer.png',
     title: 'Offers',
-    description: 'get exclusive offers and discounts',
+    description: 'Get exclusive offers and discounts',
   },
 ];
 
 const FeatureCards = () => {
+  const pinRef = useRef(null); // Ref for the card container
+
+  useGSAP(() => {
+    // Pin the container and animate cards
+    gsap.fromTo(
+      pinRef.current,
+      { x: '100%' }, // Start off-screen to the right
+      {
+        x: '0%', // Slide to fully visible
+        duration: 10, // Adjust duration for how long you want the animation
+        ease: 'none', // Linear easing for constant speed
+        scrollTrigger: {
+          trigger: pinRef.current,
+          start: 'top 30%', // Pin when the top of the section hits the top of the viewport
+          end: `+=${features.length * 1000}`, // Adjust based on number of cards and animation duration
+          pin: true, // Enable pinning
+          scrub: true, // Smooth scrubbing
+        },
+      }
+    );
+  });
+
   return (
-    <div className="flex justify-center flex-wrap gap-10">
+    <div ref={pinRef} className="flex justify-start flex-nowrap gap-10 overflow-hidden">
       {features.map((feature, index) => (
         <FeatureCard
           key={index}
