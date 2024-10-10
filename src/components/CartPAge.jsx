@@ -20,7 +20,27 @@ const CartPage = () => {
         };
 
         getCartItems();
-    }, [userInfo?.email]);
+    }, [userInfo?.email, cartItems]);
+
+    const removeItemFromCart = async (productId) => {
+        try {
+            const response = await fetch('http://localhost:3001/cart/remove', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: userInfo?.email, productId }),
+            });
+            const data = await response.json();
+            console.log('Remove Item Response:', data);
+            // Update the cart items after deletion
+            if (response.ok) {
+                setCartItems(data.cartItems);
+            }
+        } catch (error) {
+            console.error('Error removing item from cart:', error);
+        }
+    };
 
     return (
         <div className="max-w-4xl mx-auto p-6">
@@ -43,6 +63,12 @@ const CartPage = () => {
                                         </div>
                                     </div>
                                     <span className="font-semibold text-lg text-green-600">${(item.productId.price * item.quantity).toFixed(2)}</span>
+                                    <button
+                                        onClick={() => removeItemFromCart(item.productId._id)}
+                                        className="text-red-600 hover:text-red-800 font-semibold ml-4"
+                                    >
+                                        Remove
+                                    </button>
                                 </>
                             ) : (
                                 <span className="text-red-500 font-semibold">Product not found</span>
