@@ -8,7 +8,7 @@ const CartPage = () => {
     useEffect(() => {
         const getCartItems = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/cart/${userInfo?.email}`, {
+                const response = await fetch(`https://jsm-contest.onrender.com/cart/${userInfo?.email}`, {
                     method: 'GET',
                 });
                 const itemsJson = await response.json();

@@ -42,7 +42,7 @@ const Food = () => {
     const quantity = 1; // Default quantity, adjust as needed
 
     try {
-      const response = await fetch('http://localhost:3001/cart/add', {
+      const response = await fetch('https://jsm-contest.onrender.com/cart/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
