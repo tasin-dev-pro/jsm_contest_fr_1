@@ -71,7 +71,7 @@ const Header = () => {
                             <Link to="/restaurants" className="flex items-center gap-1"><Ham />Restaurants</Link>
                             {email && (<>
                             <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
-                            <Link className="flex items-center gap-1">
+                            <Link to={"/cart"} className="flex items-center gap-1">
                                 <ShoppingCart />
                                 <span>Cart</span>
                                 </Link>

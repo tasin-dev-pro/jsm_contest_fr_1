@@ -12,6 +12,7 @@ import Onboarding from "./pages/Onboarding"
 import {  ProfileEditPage } from "./pages/ProfileEdit"
 import { useEffect } from "react"
 import  "https://api.cronbot.ai/v1/widgets/app/app_pbddkgv57c8k"
+import Cart from "./pages/Cart"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     {/* Your app's routes */}
     <Routes>
         <Route path="/" element={<Home />}/>
+        <Route path="/cart" element={<Cart />}/>
         <Route path="/onboarding" element={<Onboarding />}/>
         <Route path="/foods" element={<Foods />}/>
         <Route path="/login" element={<Login />}/>
