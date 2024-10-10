@@ -24,7 +24,7 @@ const CartPage = () => {
 
     const removeItemFromCart = async (productId) => {
         try {
-            const response = await fetch('http://localhost:3001/cart/remove', {
+            const response = await fetch('https://jsm-contest.onrender.com/cart/remove', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
