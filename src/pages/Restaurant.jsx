@@ -4,13 +4,13 @@ function Restaurant() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsm-contest.onrender.com/getRetaurants') 
+    fetch('https://jsm-contest.onrender.com/getRetaurants')
       .then((response) => response.json())
       .then((data) => setRestaurants(data));
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
+    <div className="min-h-screen p-6">
       <h1 className="text-3xl font-bold mb-6 text-center">Our Restaurants</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {restaurants.map((restaurant, index) => (
