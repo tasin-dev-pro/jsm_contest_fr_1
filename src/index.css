@@ -8,3 +8,6 @@ html, body {
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
+html::-webkit-scrollbar, html::-webkit-scrollbar-button {
+    display: none;
+  }
