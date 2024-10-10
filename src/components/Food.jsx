@@ -55,7 +55,7 @@ const Food = () => {
 
       const result = await response.json();
       if (response.ok) {
-        alert.log(result.message); // Show success message or update cart state
+        alert(result.message); // Show success message or update cart state
       } else {
         alert(result.message); // Show error message
       }
