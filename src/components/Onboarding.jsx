@@ -91,7 +91,7 @@ function OnboardingPage() {
       <div className="bg-white shadow-xl rounded-lg p-6 max-w-2xl mx-auto">
         {responseImg && (
           <div className="mb-6 text-center">
-            <img src={responseImg} alt="Uploaded profile" className="max-w-xs mx-auto rounded-full shadow-lg" />
+            <img src={responseImg} alt="Uploaded profile" className="max-w-xs mx-auto rounded-full shadow-lg h-32 w-32 object-cover" />
           </div>
         )}
         <form onSubmit={handleSubmit}>
