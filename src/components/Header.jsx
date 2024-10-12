@@ -103,14 +103,13 @@ const Header = () => {
                             <Link to="/restaurants" className="flex items-center gap-1"><Ham />Restaurants</Link>
                             {email && (<>
                             <Link to="/" className="flex items-center gap-1" onClick={logout}><LogOut />Logout</Link>
-                            <Link to="/onboarding" className="flex items-center gap-1" >Profile</Link>
-                            <Link className="flex items-center gap-1">
+                            <Link className="flex items-center gap-1" to={"/cart"}>
                                 <ShoppingCart />
                                 <span>Cart</span>
                                 </Link>
                                 {responseImg && (
-        <Link className="w-8" to="/edit">
-          <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover" />
+        <Link className="w-8 h-8" to="/edit">
+          <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover h-full" />
         </Link>
       )}
                             </>)}

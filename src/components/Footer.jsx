@@ -3,14 +3,6 @@ import { Link } from "react-router-dom"
 export const Footer = () => {
   return (
     <footer className="text-gray-600 body-font">
-  <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col items-center  justify-center">
-    <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-      <Link to=""  className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-        <span className="ml-3 text-xl">lattestura</span>
-      </Link>
-      <p className="mt-2 text-sm text-gray-500">Eat some shit pay some shit</p>
-    </div>
-  </div>
   <div className="bg-gray-100">
     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
       <p className="text-gray-500 text-sm text-center sm:text-left">© Created When YOur grandpas grandpa was born — Lattestura

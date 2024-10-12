@@ -27,7 +27,7 @@ const features = [
 const FeatureCards = () => {
 
   return (
-    <div className="flex justify-center flex-wrap pl-10 flex-nowrap gap-10 overflow-hidden">
+    <div className="flex justify-center flex-wrap gap-10 overflow-hidden">
       {features.map((feature, index) => (
         <FeatureCard
           key={index}

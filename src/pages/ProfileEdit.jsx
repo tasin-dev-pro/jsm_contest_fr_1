@@ -3,7 +3,7 @@ import ProfileEdit from '../components/ProfileEdit'
 
 export const ProfileEditPage = () => {
   return (
-    <div>
+    <div className="min-h-screen w-full">
         <ProfileEdit/>
         </div>
   )

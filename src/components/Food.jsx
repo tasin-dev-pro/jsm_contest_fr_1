@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import { Search } from "lucide-react";
-import { Soup } from "lucide-react";
+import { Search, Soup, ShoppingCart } from "lucide-react";
 import { UserContext } from "../UserContext";
+import Toast from "./Toast";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Food = () => {
   const [food, setFood] = useState([]);
@@ -9,8 +10,9 @@ const Food = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const {userInfo} = useContext(UserContext)
-  const [orderLoading, setOrderLoading] = useState(false);
+  const {userInfo} = useContext(UserContext);
+  const [orderLoading, setOrderLoading] = useState({});
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
     fetch('https://jsm-contest.onrender.com/getFoods', { method: 'GET' })
@@ -39,11 +41,11 @@ const Food = () => {
   }, [searchQuery, food]);
 
   const addToCart = async (productId) => {
-    const email = userInfo?.email; // Replace with actual user's email or get it from your context/store
-    const quantity = 1; // Default quantity, adjust as needed
+    const email = userInfo?.email;
+    const quantity = 1;
 
     try {
-        setOrderLoading(true)
+      setOrderLoading((prev) => ({ ...prev, [productId]: true }));
       const response = await fetch('https://jsm-contest.onrender.com/cart/add', {
         method: 'POST',
         headers: {
@@ -52,87 +54,114 @@ const Food = () => {
         body: JSON.stringify({ email, productId, quantity }),
       });
 
-
       const result = await response.json();
       if (response.ok) {
-        alert(result.message); // Show success message or update cart state
+        setToast({ message: result.message, type: "success" });
       } else {
-        alert(result.message); // Show error message
+        setToast({ message: result.message, type: "error" });
       }
-      setOrderLoading(false);
     } catch (error) {
+      setToast({ message: "Error adding item to cart.", type: "error" });
       console.error("Error adding item to cart:", error);
+    } finally {
+      setOrderLoading((prev) => ({ ...prev, [productId]: false }));
     }
   };
 
-  const SkeletonLoader = () => (
-    <div className="px-3 py-1 rounded-lg w-72 shadow-lg h-[400px] relative animate-pulse">
-      <div className="w-full h-[50%] bg-gray-200"></div>
-      <div className="h-6 bg-gray-200 rounded mt-4"></div>
-      <div className="h-4 bg-gray-200 rounded mt-2"></div>
-      <div className="h-4 bg-gray-200 rounded mt-2 w-20"></div>
-      <div className="absolute left-2 bottom-2 h-6 bg-gray-200 w-16 rounded"></div>
-    </div>
+  const FoodCard = ({ item }) => (
+    <motion.div
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+    >
+      <div className="relative h-48 overflow-hidden">
+        <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold ${item.dishType === "Veg" ? "bg-green-500" : "bg-red-500"} text-white`}>
+          {item.dishType}
+        </div>
+      </div>
+      <div className="p-4">
+        <h2 className="font-bold text-xl mb-2 truncate">{item.name}</h2>
+        <p className="text-gray-600 text-sm mb-2 h-12 overflow-hidden">{item.description}</p>
+        <div className="flex justify-between items-center">
+          <p className="font-semibold text-lg">${item.price.toFixed(2)}</p>
+          <button
+            className={`px-4 py-2 rounded-full ${orderLoading[item._id] ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"} text-white transition-colors duration-300 flex items-center`}
+            onClick={() => addToCart(item._id)}
+            disabled={orderLoading[item._id]}
+          >
+            {orderLoading[item._id] ? "Adding..." : <>Add <ShoppingCart className="ml-2 w-4 h-4" /></>}
+          </button>
+        </div>
+      </div>
+    </motion.div>
   );
 
   return (
-    <div className="max-w-[1396px] m-auto">
-      <div className="px-6 mb-6 mt-4 flex flex-col items-center relative">
-        <div className="relative w-full max-w-[1396px]">
-          <Search className="absolute left-3 top-3 text-gray-400 text-xl" />
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-center mb-4">Our Menu</h1>
+        <div className="relative max-w-2xl mx-auto">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder="Search by food name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 px-4 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full pl-10 pr-4 py-3 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition-all duration-300"
           />
         </div>
-
-        {suggestions.length > 0 && (
-          <ul className="bg-white border border-gray-300 w-full max-w-md rounded-md mt-2 shadow-md">
-            {suggestions.map((suggestion, index) => (
-              <li
-                key={index}
-                className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                onClick={() => setSearchQuery(suggestion.name)}
-              >
-                {suggestion.name}
-              </li>
-            ))}
-          </ul>
-        )}
+        <AnimatePresence>
+          {suggestions.length > 0 && (
+            <motion.ul
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="bg-white border border-gray-300 max-w-2xl mx-auto mt-2 rounded-md shadow-md overflow-hidden"
+            >
+              {suggestions.map((suggestion, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors duration-200"
+                  onClick={() => setSearchQuery(suggestion.name)}
+                >
+                  {suggestion.name}
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="flex flex-wrap gap-10 justify-center items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {loading
-          ? Array.from({ length: 20 }).map((_, index) => (
-              <SkeletonLoader key={index} />
-            ))
-          : filteredFood.length > 0 ? filteredFood.map((item) => (
-              <div
-                key={item._id}
-                className="px-3 py-3 rounded-lg w-72 shadow-lg h-[400px] relative"
-              >
-                <img
-                  src={item.imageUrl}
-                  alt={item.name}
-                  className="w-full h-[50%] object-cover rounded-lg"
-                />
-                <h2 className="font-bold my-1">{item.name}</h2>
-                <p className="font-semibold text-[15px]">${item.price}</p>
-                <p className={`font-semibold text-[15px] ${item.dishType === "Veg" ? "text-green-500" : "text-red-500"} flex items-center`}><Soup />{item.dishType}</p>
-                <p className="text-[15px]">{item.description}</p>
-                <button
-                  className="absolute font-bold left-3 bottom-3 px-3 py-1 bg-red-500 text-white rounded"
-                  onClick={() => addToCart(item._id)} // Call addToCart function with the product ID
-                >
-                  add to cart
-                </button>
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+                <div className="h-48 bg-gray-300"></div>
+                <div className="p-4">
+                  <div className="h-6 bg-gray-300 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+                </div>
               </div>
             ))
-          : <p>No food found.</p>}
+          : filteredFood.length > 0 ? (
+            <AnimatePresence>
+              {filteredFood.map((item) => (
+                <FoodCard key={item._id} item={item} />
+              ))}
+            </AnimatePresence>
+          ) : (
+            <p className="col-span-full text-center text-xl text-gray-500">No food found.</p>
+          )}
       </div>
+
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
     </div>
   );
 };

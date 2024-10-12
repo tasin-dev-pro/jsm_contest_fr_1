@@ -11,7 +11,6 @@ import Restaurant from "./pages/Restaurant"
 import Onboarding from "./pages/Onboarding"
 import {  ProfileEditPage } from "./pages/ProfileEdit"
 import { useEffect, useLayoutEffect, useRef } from "react"
-import  "https://api.cronbot.ai/v1/widgets/app/app_pbddkgv57c8k"
 import Cart from "./pages/Cart"
 
 
@@ -20,7 +19,7 @@ import gsap from "gsap"
 const App = () => {
   const comp = useRef(null)
 
-  useLayoutEffect(() => {
+  useLayoutEffect(() => {   
     let ctx = gsap.context(() => {
       const t1 = gsap.timeline()
       t1.from("#intro-slider", {

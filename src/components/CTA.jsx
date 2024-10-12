@@ -11,24 +11,21 @@ const CTA = () => {
     useGSAP(() => {
         gsap.from(img1.current, {
             opacity: 0,
-            x: -500,
-            duration: 1,
+            x: -20,
+            duration: 0.1,
             scrollTrigger: {
                 trigger: img1.current,
                 start: "top 80%",
                 toggleActions: "play none none none",
-                scrub: 1,
             },
         })
         gsap.from(img2.current, {
             opacity: 0,
-            x: 500,
-            duration: 1,
+            x: 20,
+            duration: 0.1,
             scrollTrigger: {
                 trigger: img2.current,
                 start: "top 80%",
-                toggleActions: "play none none none",
-                scrub: 1,
             },
         })
     })
