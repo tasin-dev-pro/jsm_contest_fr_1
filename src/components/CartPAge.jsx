@@ -47,19 +47,19 @@ const CartPage = () => {
     <div className="flex flex-col border-b border-gray-200 py-4 last:border-b-0">
       <div className="flex items-start">
         <img
-          src={item.productId.imageUrl}
-          alt={item.productId.name}
+          src={item.productId?.imageUrl}
+          alt={item.productId?.name}
           className="w-20 h-20 object-cover rounded-md mr-4"
         />
         <div className="flex-grow">
-          <h2 className="text-lg font-semibold">{item.productId.name}</h2>
-          <p className="text-gray-600">Quantity: {item.quantity}</p>
-          <p className="text-gray-600">Price: ${item.productId.price.toFixed(2)}</p>
-          <p className="text-gray-600">Total: ${(item.productId.price * item.quantity).toFixed(2)}</p>
+          <h2 className="text-lg font-semibold">{item.productId?.name}</h2>
+          <p className="text-gray-600">Quantity: {item?.quantity}</p>
+          <p className="text-gray-600">Price: ${item.productId?.price.toFixed(2)}</p>
+          <p className="text-gray-600">Total: ${(item.productId?.price * item?.quantity).toFixed(2)}</p>
         </div>
       </div>
       <button
-        onClick={() => removeItemFromCart(item.productId._id)}
+        onClick={() => removeItemFromCart(item.productId?._id)}
         className="mt-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out self-start"
       >
         Remove
