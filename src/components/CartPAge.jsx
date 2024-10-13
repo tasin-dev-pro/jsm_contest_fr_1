@@ -23,7 +23,7 @@ const CartPage = () => {
     };
 
     getCartItems();
-  }, [userInfo?.email]);
+  }, [userInfo?.email, cartItems.length]);
 
   const removeItemFromCart = async (productId) => {
     try {
@@ -54,8 +54,8 @@ const CartPage = () => {
         <div className="flex-grow">
           <h2 className="text-lg font-semibold">{item.productId?.name}</h2>
           <p className="text-gray-600">Quantity: {item?.quantity}</p>
-          <p className="text-gray-600">Price: ${item.productId?.price.toFixed(2)}</p>
-          <p className="text-gray-600">Total: ${(item.productId?.price * item?.quantity).toFixed(2)}</p>
+          <p className="text-gray-600">Price: ${item.productId?.price?.toFixed(2)}</p>
+          <p className="text-gray-600">Total: ${(item.productId?.price * item?.quantity)?.toFixed(2)}</p>
         </div>
       </div>
       <button
@@ -67,7 +67,7 @@ const CartPage = () => {
     </div>
   );
 
-  const total = cartItems.reduce((sum, item) => sum + item.productId.price * item.quantity, 0);
+  const total = cartItems?.reduce((sum, item) => sum + item.productId?.price * item?.quantity, 0);
 
   return (
     <div className="max-w-md mx-auto p-4">
@@ -79,7 +79,7 @@ const CartPage = () => {
       ) : cartItems.length > 0 ? (
         <div className="bg-white rounded-lg shadow-md p-4">
           {cartItems.map(item => (
-            <CartItem key={item._id} item={item} />
+            <CartItem key={item?._id} item={item} />
           ))}
           <div className="mt-4 text-right">
             <p className="text-xl font-bold">Total: ${total.toFixed(2)}</p>

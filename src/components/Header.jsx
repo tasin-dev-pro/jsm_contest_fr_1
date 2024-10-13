@@ -16,9 +16,9 @@ const Header = () => {
         .then(data => {
             console.log(data);
 
-            setResponseImg(data.profilePic)
-            setUsernameGlb(data.username)
-            setBioGlb(data.bio)
+            setResponseImg(data?.profilePic)
+            setUsernameGlb(data?.username)
+            setBioGlb(data?.bio)
         })
     }, [userInfo?.email, responseImg])
     useEffect(() => {
