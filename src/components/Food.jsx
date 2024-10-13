@@ -10,8 +10,9 @@ const Food = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const {userInfo} = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
   const [orderLoading, setOrderLoading] = useState({});
+  const [quantities, setQuantities] = useState({});
   const [toast, setToast] = useState(null);
 
   useEffect(() => {
@@ -27,12 +28,12 @@ const Food = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       const filtered = food.filter((item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+        item?.name?.toLowerCase()?.includes(searchQuery?.toLowerCase())
       );
       setFilteredFood(filtered);
 
-      if (searchQuery.length > 0) {
-        setSuggestions(filtered.slice(0, 5));
+      if (searchQuery?.length > 0) {
+        setSuggestions(filtered?.slice(0, 5));
       } else {
         setSuggestions([]);
       }
@@ -40,9 +41,17 @@ const Food = () => {
     return () => clearTimeout(timeoutId);
   }, [searchQuery, food]);
 
+  // Handle quantity changes
+  const handleQuantityChange = (productId, delta) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [productId]: Math.max(1, (prev?.[productId] || 1) + delta), // Ensure minimum quantity is 1
+    }));
+  };
+
   const addToCart = async (productId) => {
-    const email = userInfo?.email;
-    const quantity = 1;
+    const email = userInfo?.email; // Optional chaining here
+    const quantity = quantities?.[productId] || 1; // Use selected quantity or default to 1
 
     try {
       setOrderLoading((prev) => ({ ...prev, [productId]: true }));
@@ -54,11 +63,11 @@ const Food = () => {
         body: JSON.stringify({ email, productId, quantity }),
       });
 
-      const result = await response.json();
-      if (response.ok) {
-        setToast({ message: result.message, type: "success" });
+      const result = await response?.json();
+      if (response?.ok) {
+        setToast({ message: result?.message, type: "success" });
       } else {
-        setToast({ message: result.message, type: "error" });
+        setToast({ message: result?.message, type: "error" });
       }
     } catch (error) {
       setToast({ message: "Error adding item to cart.", type: "error" });
@@ -77,24 +86,49 @@ const Food = () => {
       className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
     >
       <div className="relative h-48 overflow-hidden">
-        <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold ${item.dishType === "Veg" ? "bg-green-500" : "bg-red-500"} text-white`}>
-          {item.dishType}
+        <img
+          src={item?.imageUrl}
+          alt={item?.name}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+        />
+        <div
+          className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold ${
+            item?.dishType === "Veg" ? "bg-green-500" : "bg-red-500"
+          } text-white`}
+        >
+          {item?.dishType}
         </div>
       </div>
       <div className="p-4">
-        <h2 className="font-bold text-xl mb-2 truncate">{item.name}</h2>
-        <p className="text-gray-600 text-sm mb-2 h-12 overflow-hidden">{item.description}</p>
-        <div className="flex justify-between items-center">
-          <p className="font-semibold text-lg">${item.price.toFixed(2)}</p>
-          <button
-            className={`px-4 py-2 rounded-full ${orderLoading[item._id] ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"} text-white transition-colors duration-300 flex items-center`}
-            onClick={() => addToCart(item._id)}
-            disabled={orderLoading[item._id]}
-          >
-            {orderLoading[item._id] ? "Adding..." : <>Add <ShoppingCart className="ml-2 w-4 h-4" /></>}
-          </button>
+        <h2 className="font-bold text-xl mb-2 truncate">{item?.name}</h2>
+        <p className="text-gray-600 text-sm mb-2 h-12 overflow-hidden">{item?.description}</p>
+        <div className="flex justify-between items-center mb-4">
+          <p className="font-semibold text-lg">${item?.price?.toFixed(2)}</p>
+          <div className="flex items-center">
+            <button
+              className="px-2 py-1 bg-gray-300 rounded-l hover:bg-gray-400 transition-colors"
+              onClick={() => handleQuantityChange(item?._id, -1)}
+            >
+              -
+            </button>
+            <span className="px-3">{quantities?.[item?._id] || 1}</span>
+            <button
+              className="px-2 py-1 bg-gray-300 rounded-r hover:bg-gray-400 transition-colors"
+              onClick={() => handleQuantityChange(item?._id, 1)}
+            >
+              +
+            </button>
+          </div>
         </div>
+        <button
+          className={`px-4 py-2 rounded-full ${
+            orderLoading?.[item?._id] ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"
+          } text-white transition-colors duration-300 flex items-center`}
+          onClick={() => addToCart(item?._id)}
+          disabled={orderLoading?.[item?._id]}
+        >
+          {orderLoading?.[item?._id] ? "Adding..." : <>Add <ShoppingCart className="ml-2 w-4 h-4" /></>}
+        </button>
       </div>
     </motion.div>
   );
@@ -114,23 +148,23 @@ const Food = () => {
           />
         </div>
         <AnimatePresence>
-          {suggestions.length > 0 && (
+          {suggestions?.length > 0 && (
             <motion.ul
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className="bg-white border border-gray-300 max-w-2xl mx-auto mt-2 rounded-md shadow-md overflow-hidden"
             >
-              {suggestions.map((suggestion, index) => (
+              {suggestions?.map((suggestion, index) => (
                 <motion.li
                   key={index}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className="px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors duration-200"
-                  onClick={() => setSearchQuery(suggestion.name)}
+                  onClick={() => setSearchQuery(suggestion?.name)}
                 >
-                  {suggestion.name}
+                  {suggestion?.name}
                 </motion.li>
               ))}
             </motion.ul>
@@ -150,10 +184,10 @@ const Food = () => {
                 </div>
               </div>
             ))
-          : filteredFood.length > 0 ? (
+          : filteredFood?.length > 0 ? (
             <AnimatePresence>
-              {filteredFood.map((item) => (
-                <FoodCard key={item._id} item={item} />
+              {filteredFood?.map((item) => (
+                <FoodCard key={item?._id} item={item} />
               ))}
             </AnimatePresence>
           ) : (
@@ -161,7 +195,7 @@ const Food = () => {
           )}
       </div>
 
-      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+      {toast && <Toast message={toast?.message} type={toast?.type} onClose={() => setToast(null)} />}
     </div>
   );
 };
