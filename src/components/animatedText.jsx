@@ -56,7 +56,7 @@ const BigTextSection = () => {
         className="absolute h-96" // Adjust height and positioning as needed
         style={{ left: '0', top: '50%', transform: 'translateY(-50%)' }} // Center the image vertically
       />
-      <div ref={textRef} className="whitespace-nowrap font-bold text-[300px] text-red-600">
+      <div ref={textRef} className="whitespace-nowrap font-bold text-[300px] text-orange-600">
         Best Restaurant You Have Ever Seen!
       </div>
     </div>

@@ -10,7 +10,7 @@ function OnboardingPage() {
   const [bio, setBio] = useState(bioGlb || '');
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null); // State to show toast notifications
-  const navigate = useNavigate(); // Hook for navigation (redirection)
+  const navigate = useNavigate(); // Hook for navigation (orangeirection)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,9 +64,9 @@ function OnboardingPage() {
       // Set the image in the context
       setResponseImg(cloudinaryResult);
 
-      // Redirect after 2 seconds
+      // orangeirect after 2 seconds
       setTimeout(() => {
-        navigate('/edit'); // Redirect to profile or any desired page
+        navigate('/edit'); // orangeirect to profile or any desiorange page
       }, 2000);
     } catch (error) {
       console.error('Error uploading or updating profile:', error);
@@ -136,7 +136,7 @@ function OnboardingPage() {
           <div className="flex justify-center">
             <button
               className={`${
-                loading ? 'bg-gray-400' : 'bg-red-500 hover:bg-red-700'
+                loading ? 'bg-gray-400' : 'bg-orange-500 hover:bg-orange-700'
               } text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
               type="submit"
               disabled={loading}

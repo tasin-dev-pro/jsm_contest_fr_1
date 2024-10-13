@@ -10,20 +10,23 @@ import ContactPage from "./pages/ContactPage"
 import Restaurant from "./pages/Restaurant"
 import Onboarding from "./pages/Onboarding"
 import {  ProfileEditPage } from "./pages/ProfileEdit"
-import { useEffect, useLayoutEffect, useRef } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import Cart from "./pages/Cart"
+import loading from './animations/loading.json'
 
 
 import gsap from "gsap"
+import Lottie from "lottie-react"
 
 const App = () => {
   const comp = useRef(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-  useLayoutEffect(() => {   
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       const t1 = gsap.timeline()
       t1.from("#intro-slider", {
-        duration: 1.3,
+        duration: 4,
         delay: 0.6,
       })
         .from(["#title-1", "#title-2", "#title-3"], {
@@ -49,26 +52,31 @@ const App = () => {
 
     return () => ctx.revert()
   }, [])
+  useEffect(() => {
+    // Simulate loading process (e.g., fetching data)
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Set loading to false after 4 seconds or when your data is ready
+    }, 4000); // You can adjust this time based on your loading requirements
+
+    return () => clearTimeout(timer); // Cleanup the timer when the component unmounts
+  }, [])
+
+  if (isLoading) {
+    return (
+      <div
+        id="intro-slider"
+        className="max-h-screen bg-white fixed top-0 left-0 w-full h-full z-50 flex justify-center items-center"
+      >
+        <Lottie animationData={loading} loop={true} className="w-[700px]" />
+      </div>
+    )
+  }
 
   return (
     <BrowserRouter>
     <UserContextProvider>
     <Header />
     <div className="relative" ref={comp}>
-    <div
-        id="intro-slider"
-        className="h-[100vh] p-10 bg-gray-50 absolute top-0 left-0 font-spaceGrotesk z-10 w-full flex flex-col gap-10 tracking-tight"
-      >
-        <h1 className="text-9xl" id="title-1">
-          Order
-        </h1>
-        <h1 className="text-9xl" id="title-2">
-          Get
-        </h1>
-        <h1 className="text-9xl" id="title-3">
-          Eat
-        </h1>
-      </div>
 
     {/* Your app's routes */}
     <Routes>

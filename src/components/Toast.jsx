@@ -9,7 +9,7 @@ const Toast = ({ message, type, onClose }) => {
   return (
     <div
       className={`fixed top-20 right-5 px-4 py-2 rounded-md shadow-lg transition-all duration-300 ${
-        type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"
+        type === "success" ? "bg-green-500 text-white" : "bg-orange-500 text-white"
       }`}
     >
       <div className="flex items-center justify-between">

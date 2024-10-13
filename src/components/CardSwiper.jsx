@@ -27,7 +27,7 @@ function CardSwiper() {
         >
           <div className="relative h-48 overflow-hidden">
             <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-            <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold ${item.dishType === "Veg" ? "bg-green-500" : "bg-red-500"} text-white`}>
+            <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold ${item.dishType === "Veg" ? "bg-green-500" : "bg-orange-500"} text-white`}>
               {item.dishType}
             </div>
           </div>

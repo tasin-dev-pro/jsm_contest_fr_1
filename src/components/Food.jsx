@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Food = () => {
   const [food, setFood] = useState([]);
-  const [filteredFood, setFilteredFood] = useState([]);
+  const [filteorangeFood, setFilteorangeFood] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -20,20 +20,20 @@ const Food = () => {
       .then((response) => response.json())
       .then((data) => {
         setFood(data);
-        setFilteredFood(data);
+        setFilteorangeFood(data);
         setLoading(false);
       });
   }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      const filtered = food.filter((item) =>
+      const filteorange = food.filter((item) =>
         item?.name?.toLowerCase()?.includes(searchQuery?.toLowerCase())
       );
-      setFilteredFood(filtered);
+      setFilteorangeFood(filteorange);
 
       if (searchQuery?.length > 0) {
-        setSuggestions(filtered?.slice(0, 5));
+        setSuggestions(filteorange?.slice(0, 5));
       } else {
         setSuggestions([]);
       }
@@ -93,7 +93,7 @@ const Food = () => {
         />
         <div
           className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold ${
-            item?.dishType === "Veg" ? "bg-green-500" : "bg-red-500"
+            item?.dishType === "Veg" ? "bg-green-500" : "bg-orange-500"
           } text-white`}
         >
           {item?.dishType}
@@ -122,7 +122,7 @@ const Food = () => {
         </div>
         <button
           className={`px-4 py-2 rounded-full ${
-            orderLoading?.[item?._id] ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"
+            orderLoading?.[item?._id] ? "bg-gray-400" : "bg-orange-500 hover:bg-orange-600"
           } text-white transition-colors duration-300 flex items-center`}
           onClick={() => addToCart(item?._id)}
           disabled={orderLoading?.[item?._id]}
@@ -144,7 +144,7 @@ const Food = () => {
             placeholder="Search by food name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition-all duration-300"
+            className="w-full pl-10 pr-4 py-3 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all duration-300"
           />
         </div>
         <AnimatePresence>
@@ -184,9 +184,9 @@ const Food = () => {
                 </div>
               </div>
             ))
-          : filteredFood?.length > 0 ? (
+          : filteorangeFood?.length > 0 ? (
             <AnimatePresence>
-              {filteredFood?.map((item) => (
+              {filteorangeFood?.map((item) => (
                 <FoodCard key={item?._id} item={item} />
               ))}
             </AnimatePresence>

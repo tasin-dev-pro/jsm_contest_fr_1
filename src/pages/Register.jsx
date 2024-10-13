@@ -27,16 +27,27 @@ const Register = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen relative">
-        <div className="bg-white rounded-lg shadow-md p-6 w-full mx-7 max-w-md">
-          <h2 className="text-2xl font-bold mb-4">Register</h2>
-          <form onSubmit={register}>
+      <div className="flex flex-col items-center justify-center h-screen relative px-7">
+      <Link className="flex items-center mb-5" to="/">
+                            <img src="/Vibhor.png" alt="Logo" className="w-16 h-16"/>
+                            <div className="ml-4 flex items-center text-3xl">
+                                <span className="font-bold">Latte<span className="text-orange-500">stura</span></span>
+                                <i className="fas fa-chevron-down ml-1 text-orange-500"></i>
+                            </div>
+                        </Link>
+        <div className="bg-white rounded-lg shadow-xl hover:shadow-2xl hover:shadow-gray-700 shadow-gray-500  transition-all duration-300 w-full max-w-md ">
+            <div className="bg-gray-100 w-full flex justify-center items-center flex-col gap-y-2 py-5 rounded-t-lg">
+
+          <h2 className="text-2xl font-bold">Register</h2>
+          <p className="text-orange-500 font-semibold">Enter details to register</p>
+            </div>
+          <form onSubmit={register} className="p-6">
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                 Username
               </label>
               <input
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-orange-400 focus:shadow-outline"
                 id="username"
                 type="text"
                 placeholder="your name"
@@ -48,7 +59,7 @@ const Register = () => {
                 Email
               </label>
               <input
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-orange-400 focus:shadow-outline"
                 id="email"
                 type="email"
                 placeholder="your@email.com"
@@ -60,7 +71,7 @@ const Register = () => {
                 Password
               </label>
               <input
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-orange-400 focus:shadow-outline"
                 id="password"
                 type="password"
                 placeholder="********"
@@ -69,13 +80,13 @@ const Register = () => {
             </div>
             <div className="flex items-center justify-between">
               <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Register
               </button>
               <Link
-                className="inline-block underline align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800"
+                className="inline-block underline align-baseline font-semibold text-sm text-orange-500 hover:text-orange-800"
                 to="/login"
               >
                 Already have an account?

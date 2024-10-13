@@ -6,6 +6,7 @@ import { UserContext } from "../UserContext";
 import { useGSAP } from "@gsap/react"; // Importing the useGSAP hook from @gsap/react
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import mouse from '../animations/mouse.json';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,6 +70,7 @@ const HeroSection = () => {
   });
 
   return (
+    <>
     <div className="flex flex-col md:flex-row items-center justify-center w-full py-10 px-10">
       {/* Image Section */}
       <div className="w-[45%] max-md:w-full mb-6 md:mb-0" ref={main}>
@@ -78,7 +80,7 @@ const HeroSection = () => {
       {/* Text Section */}
       <div className="w-[40%] md:pl-8 max-md:w-full">
         <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold mb-4" ref={headTxt}>
-          Get your tasty food <span className="text-red-500 under">now</span>
+          Get your tasty food <Link to="/login" className="text-orange-500 underline">now</Link>
         </h1>
         <p className="mb-6" ref={subTxt}>
           fastest delivery and tastes best
@@ -106,6 +108,11 @@ const HeroSection = () => {
         )}
       </div>
     </div>
+      <div className='flex gap-2 items-center justify-center'>
+            <Lottie animationData={mouse} loop={true} className='w-16 pt-4'/>
+            <p className='text-2xl font-bold text-orange-500 text-center mt-10 mb-6'>Scroll down</p>
+        </div>
+    </>
   );
 };
 

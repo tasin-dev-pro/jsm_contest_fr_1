@@ -15,7 +15,7 @@ const FeatureCard = ({ image, title, description, link }) => {
     >
       <img className="w-full h-44 object-cover" src={image} alt={`${title} image`} />
       <div className="px-6 py-4">
-        <h1 className="font-bold text-xl mb-2 underline text-red-400">{title}</h1>
+        <h1 className="font-bold text-xl mb-2 underline text-orange-400">{title}</h1>
         <p className="text-gray-700 text-base">
           {description}
         </p>

@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUserInfo } = useContext(UserContext);
-  const [redirect, setRedirect] = useState(false);
+  const [orangeirect, setorangeirect] = useState(false);
   const [toast, setToast] = useState(null); // Manage toast state
 
   async function login(e) {
@@ -17,7 +17,7 @@ const Login = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
+      corangeentials: 'include',
       body: JSON.stringify({ email, password }),
     });
 
@@ -28,26 +28,37 @@ const Login = () => {
           type: 'success',
           message: 'Login successful!',
         });
-        setTimeout(() => setRedirect(true), 2000); // Redirect after 2 seconds
+        setTimeout(() => setorangeirect(true), 2000); // orangeirect after 2 seconds
       });
     } else {
       setToast({
         type: 'error',
-        message: 'Login failed. Please check your credentials.',
+        message: 'Login failed. Please check your corangeentials.',
       });
     }
   }
 
-  if (redirect) {
+  if (orangeirect) {
     return <Navigate to={'/'} />;
   }
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <div className="bg-white rounded-lg shadow-md p-6 mx-7 w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4">Login</h2>
-          <form onSubmit={login}>
+      <div className="flex items-center justify-center h-screen flex-col">
+      <div className="flex items-center mb-5">
+                            <img src="/Vibhor.png" alt="Logo" className="w-16 h-16"/>
+                            <div className="ml-4 flex items-center text-3xl">
+                                <span className="font-bold">Latte<span className="text-orange-500">stura</span></span>
+                                <i className="fas fa-chevron-down ml-1 text-orange-500"></i>
+                            </div>
+                        </div>
+        <div className="bg-white rounded-lg shadow-xl hover:shadow-2xl hover:shadow-gray-700 shadow-gray-500 mx-7 transition-all duration-300 w-full max-w-md">
+        <div className="bg-gray-100  w-full flex justify-center items-center flex-col gap-y-2 py-5 rounded-t-lg">
+
+<h2 className="text-2xl font-bold">Login</h2>
+<p className="text-orange-500 font-semibold">Enter details to login</p>
+  </div>
+          <form onSubmit={login} className=" p-6 ">
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                 Email
@@ -74,16 +85,16 @@ const Login = () => {
             </div>
             <div className="flex items-center justify-between">
               <button
-                className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Login
               </button>
               <Link
-                className="inline-block underline align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800"
+                className="inline-block underline align-baseline font-semibold text-sm text-orange-500 hover:text-orange-800"
                 to="/register"
               >
-                Don't have an account?
+                Dont have an account?
               </Link>
             </div>
           </form>

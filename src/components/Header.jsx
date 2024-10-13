@@ -23,7 +23,7 @@ const Header = () => {
     }, [userInfo?.email, responseImg])
     useEffect(() => {
         fetch('https://jsm-contest.onrender.com/profile', {
-            credentials: 'include',
+            corangeentials: 'include',
         }).then(res => {
             res.json().then(userInfo => {
                 setUserInfo(userInfo.email)
@@ -33,7 +33,7 @@ const Header = () => {
 
     function logout () {
         fetch('https://jsm-contest.onrender.com/logout', {
-            credentials: 'include',
+            corangeentials: 'include',
             method: 'POST'
         });
         setUserInfo(null)
@@ -53,7 +53,7 @@ const Header = () => {
                         <Link className="flex items-center" to="/">
                             <img src="/Vibhor.png" alt="Logo" className="w-8 h-8"/>
                             <div className="ml-4 flex items-center">
-                                <span className="font-semibold">Lattestura</span>
+                                <span className="font-bold">Latte<span className="text-orange-500">stura</span></span>
                                 <i className="fas fa-chevron-down ml-1 text-orange-500"></i>
                             </div>
                         </Link>
