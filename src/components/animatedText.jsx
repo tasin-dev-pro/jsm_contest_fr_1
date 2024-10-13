@@ -39,7 +39,7 @@ const BigTextSection = () => {
         ease: 'linear', // Linear easing for constant speed
         scrollTrigger: {
           trigger: pinRef.current,
-          start: 'top top', // Pin when the top of the section hits the top of the viewport
+          start: 'top ', // Pin when the top of the section hits the top of the viewport
           end: '+=2000', // Same as text
           scrub: 1, // Smooth scrubbing
         },
