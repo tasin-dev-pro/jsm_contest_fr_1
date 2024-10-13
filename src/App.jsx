@@ -77,7 +77,12 @@ const App = () => {
       <UserContextProvider>
         <Header />
         <div className="relative" ref={comp}>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div
+        id="intro-slider"
+        className="max-h-screen bg-white fixed top-0 left-0 w-full h-full z-50 flex justify-center items-center"
+      >
+        <Lottie animationData={loading} loop={true} className="w-[700px]" />
+      </div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<Cart />} />
