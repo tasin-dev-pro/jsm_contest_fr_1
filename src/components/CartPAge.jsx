@@ -16,6 +16,7 @@ const CartPage = () => {
         });
         const itemsJson = await response.json();
         setCartItems1(itemsJson.cartItems);
+        console.log(itemsJson.cartItems);
         setCartItems(itemsJson.cartItems);
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -48,7 +49,7 @@ const CartPage = () => {
   const handleOrder = async () => {
     try {
       // Call API to place the order
-      const response = await fetch('http://localhost:3001/order/create', {
+      const response = await fetch('http://jsm-contest.onrender.com/order/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

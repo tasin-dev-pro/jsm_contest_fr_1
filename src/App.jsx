@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { lazy, Suspense, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Header from "./components/Header";
 import {Footer} from "./components/Footer";
-import { UserContextProvider } from "./UserContext";
+import { UserContext, UserContextProvider } from "./UserContext";
 import loading from './animations/loading.json';
 import Lottie from "lottie-react";
 import gsap from "gsap";
@@ -16,12 +16,33 @@ const Foods = lazy(() => import("./pages/Foods"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const Restaurant = lazy(() => import("./pages/Restaurant"));
 const Onboarding = lazy(() => import("./pages/Onboarding"));
-const ProfileEditPage = lazy(() => import("./pages/ProfileEdit"));
 const Cart = lazy(() => import("./pages/Cart"));
 
 const App = () => {
   const comp = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { setUserInfo } = useContext(UserContext);
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const verifyToken = async () => {
+            const response = await fetch('http://localhost:3001/profile', {
+                credentials: 'include', // Important for cookie auth
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setUserInfo(data); // Update context or state with user info
+            } else {
+                setUserInfo(null); // Clear user info if not valid
+            }
+        };
+        verifyToken();
+    } else {
+        setUserInfo(null); // No token found
+    }
+}, []);
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -75,7 +96,6 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <UserContextProvider>
         <div className="relative">
 
         <Header />
@@ -101,7 +121,6 @@ const App = () => {
         </div>
         <Footer />
         </div>
-      </UserContextProvider>
     </BrowserRouter>
   );
 };

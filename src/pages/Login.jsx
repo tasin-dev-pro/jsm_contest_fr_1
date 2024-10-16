@@ -22,14 +22,14 @@ const Login = () => {
     });
 
     if (response.ok) {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
+      const data = await response.json()
+        setUserInfo(data);
         setToast({
           type: 'success',
           message: 'Login successful!',
         });
+        localStorage.setItem('tokens', data.token)
         setTimeout(() => setorangeirect(true), 2000); // orangeirect after 2 seconds
-      });
     } else {
       setToast({
         type: 'error',
