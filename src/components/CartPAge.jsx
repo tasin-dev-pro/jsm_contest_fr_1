@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems1] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { userInfo } = useContext(UserContext);
+  const [showOrderPopup, setShowOrderPopup] = useState(false); // State for order popup
+  const { userInfo, setCartItems } = useContext(UserContext);
 
   useEffect(() => {
     const getCartItems = async () => {
@@ -14,6 +15,7 @@ const CartPage = () => {
           method: 'GET',
         });
         const itemsJson = await response.json();
+        setCartItems1(itemsJson.cartItems);
         setCartItems(itemsJson.cartItems);
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -23,7 +25,7 @@ const CartPage = () => {
     };
 
     getCartItems();
-  }, [userInfo?.email, cartItems.length]);
+  }, [userInfo?.email, cartItems?.length]);
 
   const removeItemFromCart = async (productId) => {
     try {
@@ -36,11 +38,37 @@ const CartPage = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        setCartItems(data.cartItems);
+        setCartItems1(data.cartItems);
       }
     } catch (error) {
       console.error('Error removing item from cart:', error);
     }
+  };
+
+  const handleOrder = async () => {
+    try {
+      // Call API to place the order
+      const response = await fetch('http://localhost:3001/order/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: userInfo?.email, cartItems }),
+      });
+
+      if (response.ok) {
+        // Clear the cart on successful order placement
+        setCartItems1([]);
+        // Show order success popup
+        setShowOrderPopup(true);
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+    }
+  };
+
+  const closeOrderPopup = () => {
+    setShowOrderPopup(false);
   };
 
   const CartItem = ({ item }) => (
@@ -84,9 +112,31 @@ const CartPage = () => {
           <div className="mt-4 text-right">
             <p className="text-xl font-bold">Total: ${total.toFixed(2)}</p>
           </div>
+          <button
+            onClick={handleOrder}
+            className="mt-4 bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition duration-300"
+          >
+            Place Order
+          </button>
         </div>
       ) : (
         <p className="text-gray-500 text-lg text-center">Your cart is empty.</p>
+      )}
+
+      {/* Order Success Popup */}
+      {showOrderPopup && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold mb-4">Order Placed Successfully!</h2>
+            <p>Your order has been placed. Thank you for shopping with us!</p>
+            <button
+              onClick={closeOrderPopup}
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

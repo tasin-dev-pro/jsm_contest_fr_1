@@ -174,7 +174,7 @@ const Food = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {loading
-          ? Array.from({ length: 8 }).map((_, index) => (
+          ? Array.from({ length: 8 })?.map((_, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
                 <div className="h-48 bg-gray-300"></div>
                 <div className="p-4">

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
-import { Contact, Ham, LogIn, LogOut, Menu, Pizza, Search, ShoppingCart, User } from "lucide-react";
+import { Contact, Ham, ListOrdered, LogIn, LogOut, Menu, Pizza, Search, ShoppingCart, User } from "lucide-react";
 
 const Header = () => {
   const { responseImg, setResponseImg, usernameGlb, setUsernameGlb, bioGlb, setBioGlb } = useContext(UserContext);
@@ -40,7 +40,6 @@ const Header = () => {
   }
 
   const email = userInfo?.email;
-  const imgIsAvailable = responseImg?.secure_url;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -96,8 +95,13 @@ const Header = () => {
                 <ShoppingCart />
                 <span>Cart</span>
               </Link>
+              <Link to={"/orders"} className="flex items-center gap-1">
+                <ShoppingCart />
+                <span>Orders</span>
+              </Link>
+
               {responseImg && (
-                <Link className="w-8 h-8" to="/edit">
+                <Link className="w-8 h-8">
                   <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover h-full" />
                 </Link>
               )}
@@ -146,6 +150,10 @@ const Header = () => {
                 <Link className="flex items-center gap-1" to={"/cart"}>
                   <ShoppingCart />
                   <span>Cart</span>
+                </Link>
+                <Link className="flex items-center gap-1" to={"/Orders"}>
+                  <ListOrdered />
+                  <span>Orders</span>
                 </Link>
                 {responseImg && (
                   <Link className="w-8 h-8" to="/edit">

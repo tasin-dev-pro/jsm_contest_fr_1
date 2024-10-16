@@ -4,7 +4,6 @@ import FeatureCards from '../components/features'
 import Faqs from '../components/Faqs'
 import FoodSwiper from '../components/FoodSwiper'
 import BigTextSection from '../components/animatedText'
-import Burger from '../components/cheeseburger.jsx'
 
 
 const Home = () => {
@@ -16,10 +15,6 @@ const Home = () => {
         <FeatureCards />
         <FoodSwiper />
         <CTA />
-        <div className='relative flex items-center justify-center h-screen bg-orange-500 mt-10 -z-10'>
-            <h1 className='absolute text-center text-[100px] text-white font-bold z-20'>Taste Our exclusive foods</h1>
-        <Burger />
-        </div>
         <Faqs />
     </div>
   )

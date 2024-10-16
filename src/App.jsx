@@ -6,6 +6,7 @@ import { UserContextProvider } from "./UserContext";
 import loading from './animations/loading.json';
 import Lottie from "lottie-react";
 import gsap from "gsap";
+import OrderHistoryPage from "./pages/Orders";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -75,6 +76,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <UserContextProvider>
+        <div className="relative">
+
         <Header />
         <div className="relative" ref={comp}>
           <Suspense fallback={<div
@@ -87,16 +90,17 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/onboarding" element={<Onboarding />} />
+              <Route path="/Orders" element={<OrderHistoryPage />} />
               <Route path="/foods" element={<Foods />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/restaurants" element={<Restaurant />} />
-              <Route path="/edit" element={<ProfileEditPage />} />
             </Routes>
           </Suspense>
         </div>
         <Footer />
+        </div>
       </UserContextProvider>
     </BrowserRouter>
   );
