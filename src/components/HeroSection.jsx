@@ -71,7 +71,7 @@ const HeroSection = () => {
 
   return (
     <>
-    <div className="flex flex-col md:flex-row items-center justify-center w-full py-10 px-10">
+    <div className="flex flex-col md:flex-row items-center justify-center w-full py-10 px-10 mt-20">
       {/* Image Section */}
       <div className="w-[45%] max-md:w-full mb-6 md:mb-0" ref={main}>
         <Lottie animationData={hero} loop={true} />

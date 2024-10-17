@@ -48,7 +48,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-white border-b sticky top-0 z-[999] w-full">
+    <div className="bg-white border-b fixed top-0 z-[999] w-full">
       <div className="flex items-center justify-between p-4">
         <Link className="flex items-center" to="/">
           <img src="/Vibhor.png" alt="Logo" className="w-8 h-8" />
@@ -101,7 +101,7 @@ const Header = () => {
               </Link>
 
               {responseImg && (
-                <Link className="w-8 h-8">
+                <Link className="w-8 h-8" to={"/profile"}>
                   <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover h-full" />
                 </Link>
               )}

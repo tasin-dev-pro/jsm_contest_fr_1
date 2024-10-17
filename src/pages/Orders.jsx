@@ -47,7 +47,7 @@ const OrderHistoryPage = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto p-4 h-screen overflow-y-auto">
+        <div className="max-w-md mx-auto p-4 h-screen overflow-y-auto mt-20">
             <h1 className="text-2xl font-bold mb-6 text-center">Your Orders</h1>
             {orders.length > 0 ? (
                 <div className="bg-white rounded-lg shadow-md p-4">

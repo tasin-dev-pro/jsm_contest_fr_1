@@ -3,7 +3,7 @@ import OnboardingPage from '../components/Onboarding'
 
 const Onboarding = () => {
   return (
-    <div>
+    <div className='mt-20 min-h-screen w-full'>
         <OnboardingPage />
     </div>
   )

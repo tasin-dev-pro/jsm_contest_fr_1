@@ -99,7 +99,7 @@ const CartPage = () => {
   const total = cartItems?.reduce((sum, item) => sum + item.productId?.price * item?.quantity, 0);
 
   return (
-    <div className="max-w-md mx-auto p-4">
+    <div className="max-w-md mx-auto p-4 mt-20">
       <h1 className="text-2xl font-bold mb-6 text-center">Your Cart</h1>
       {loading ? (
         <div className="flex justify-center items-center h-32">

@@ -17,32 +17,11 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const Restaurant = lazy(() => import("./pages/Restaurant"));
 const Onboarding = lazy(() => import("./pages/Onboarding"));
 const Cart = lazy(() => import("./pages/Cart"));
+const Profile = lazy(() => import("./pages/Profile"));
 
 const App = () => {
   const comp = useRef(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const { setUserInfo } = useContext(UserContext);
-
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        const verifyToken = async () => {
-            const response = await fetch('https://jsm-contest.onrender.com/profile', {
-                credentials: 'include', // Important for cookie auth
-            });
-            if (response.ok) {
-                const data = await response.json();
-                setUserInfo(data); // Update context or state with user info
-            } else {
-                setUserInfo(null); // Clear user info if not valid
-            }
-        };
-        verifyToken();
-    } else {
-        setUserInfo(null); // No token found
-    }
-}, []);
+  const [isLoading, setIsLoading] = useState(true)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -108,6 +87,7 @@ const App = () => {
       </div>}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/onboarding" element={<Onboarding />} />
               <Route path="/Orders" element={<OrderHistoryPage />} />

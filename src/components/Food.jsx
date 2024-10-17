@@ -134,7 +134,7 @@ const Food = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-20">
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-center mb-4">Our Menu</h1>
         <div className="relative max-w-2xl mx-auto">
