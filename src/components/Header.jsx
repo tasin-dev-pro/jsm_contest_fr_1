@@ -156,7 +156,7 @@ const Header = () => {
                   <span>Orders</span>
                 </Link>
                 {responseImg && (
-                  <Link className="w-8 h-8" to="/edit">
+                  <Link className="w-8 h-8" to="/profile">
                     <img src={responseImg} alt="Uploaded profile" className="rounded-full  w-full object-cover h-full" />
                   </Link>
                 )}

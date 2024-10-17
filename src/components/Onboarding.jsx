@@ -66,7 +66,7 @@ function OnboardingPage() {
 
       // orangeirect after 2 seconds
       setTimeout(() => {
-        navigate('/edit'); // orangeirect to profile or any desiorange page
+        navigate('/profile'); // orangeirect to profile or any desiorange page
       }, 2000);
     } catch (error) {
       console.error('Error uploading or updating profile:', error);
