@@ -28,7 +28,7 @@ const App = () => {
     const token = localStorage.getItem('token');
     if (token) {
         const verifyToken = async () => {
-            const response = await fetch('http://localhost:3001/profile', {
+            const response = await fetch('https://jsm-contest.onrender.com/profile', {
                 credentials: 'include', // Important for cookie auth
             });
             if (response.ok) {

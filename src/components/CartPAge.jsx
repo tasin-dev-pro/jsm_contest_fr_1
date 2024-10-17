@@ -49,7 +49,7 @@ const CartPage = () => {
   const handleOrder = async () => {
     try {
       // Call API to place the order
-      const response = await fetch('http://jsm-contest.onrender.com/order/create', {
+      const response = await fetch('https://jsm-contest.onrender.com/order/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
